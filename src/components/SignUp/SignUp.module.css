@@ -1,0 +1,101 @@
+.main {
+    background-color: #fafafa;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.outerContainer {
+    width: 350px;
+    padding-top: 30px;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+}
+
+.logoContainer {
+    width: 52%;
+    margin: 42px auto;
+    opacity: 0.9;
+}
+
+.logo {
+    width: 100%;
+    display: inline-flex;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 6px;
+}
+
+
+.form > .inputContainer {
+    position: relative;
+    height: 36px;
+    background-color: #fafafa;
+    border: 1px solid #e8e8e8;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+
+    padding: 4px;
+
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+}
+
+.form > .inputContainer > input {
+    position: relative;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    font-size: 12px;
+    padding-bottom: 2px;
+    transition: all 100ms ease-in;
+}
+
+.inputFieldNoInput {
+    top: 3%;
+    transform: translateY(-50%);
+}
+
+.form > .inputContainer > input:focus {
+    border: none;
+    outline: none;
+}
+
+.form input:focus .inputContainer{
+    border: 1px solid #c6c6c6;
+}
+
+.inputHeading {
+    color: #a0a0a0;
+    font-weight: 500;
+    position: relative;
+    transition: all 100ms ease-in;
+}
+
+.inputHeadingNoInput {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+}
+
+
+.form > button {
+    background-color: #b2dffc;
+    border: none;
+    outline: none;
+    color: white;
+    border-radius: 8px;
+    font-weight: 500;
+    padding: 6px;
+}
