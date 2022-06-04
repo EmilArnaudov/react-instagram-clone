@@ -1,0 +1,175 @@
+.main {
+    background-color: #fafafa;
+    min-height: 96vh;
+    display: flex;
+    justify-content: center;
+}
+
+.outerContainer {
+    width: 350px;
+    padding-top: 30px;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+
+    margin-bottom: 8px;
+}
+
+.logoContainer {
+    width: 52%;
+    margin: 42px auto;
+    opacity: 0.9;
+}
+
+.logo {
+    width: 100%;
+    display: inline-flex;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 6px;
+}
+
+
+.form > button {
+    background-color: #b2dffc;
+    border: none;
+    outline: none;
+    color: white;
+    border-radius: 2px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    padding: 6px;
+    margin: 15px 0px;
+}
+
+
+/* ** ----- DIVIDER STYLES */
+
+.dividerDiv {
+    display: flex;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.or {
+    letter-spacing: -0.5;
+    color: #7c7c7c;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0px 22px;
+}
+
+.horizontalLine {
+    background-color: #cecece;
+    display: inline-block;
+    height: 0.1px;
+    width: 105px;
+
+}
+
+
+/* *** FACEBOOK BUTTON */
+
+.connectFacebook {
+    border: none;
+    background-color: transparent;
+    color: #4e5199;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+
+    margin-bottom: 14px;
+}
+
+.fbIcon {
+    margin-right: 5px;
+}
+
+.fbIconImg {
+    height: 22px;
+    width: 22px;
+}
+
+
+/* ** ----------- FORGOT PASSWORD */
+
+.forgotPasswordContainer {
+    margin-bottom: 12px;
+}
+
+.forgotPassword {
+    text-decoration: none;
+    color: #134372;
+    font-size: 12px;
+}
+
+
+
+/* // ---------------- NO ACCOUNT DIV */
+
+.noAccountDiv {
+    padding: 24px;
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+    text-align: center;
+    margin-bottom: 26px;
+}
+
+.noAccountDiv > span {
+    font-size: 14px;
+}
+
+.noAccountDiv > span > a {
+    text-decoration: none;
+    color: #0AA0F7;
+    font-weight: 500;
+}
+
+.getTheApp {
+    text-align: center;
+}
+
+.getTheApp > p {
+    font-size: 14px;
+    margin-bottom: 26px;
+}
+
+
+.appStoreImgContainer {
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.appStoreImg {
+    width: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+@media screen and (max-width: 355px) {
+    .formContainer {
+        background-color: transparent;
+        border: none
+    }
+
+    .noAccountDiv {
+        background-color: transparent;
+        border: none;
+    }
+}
