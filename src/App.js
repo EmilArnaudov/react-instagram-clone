@@ -1,5 +1,6 @@
 import './App.css';
-import SignUp from './components/SignIn/SignIn';
+import SignIn from './components/SignIn/SignIn';
+import SignUp from './components/SignUp/SignUp';
 import Footer from './components/Footer/Footer';
 
 function App() {
