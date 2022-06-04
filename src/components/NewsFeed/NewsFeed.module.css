@@ -2,4 +2,23 @@
     background-color: #fafafa;
     min-height: 96vh;
     display: flex;
+    justify-content: center;
+}
+
+.contentSection {
+    display: flex;
+    max-width: 821px;
+    width: 100%;
+}
+
+.postsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 57.5%;
+    margin-right: 32px;
+}
+
+.suggestionSection {
+    width: calc(42.5% - 32px);
 }

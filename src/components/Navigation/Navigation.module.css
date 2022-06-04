@@ -5,11 +5,14 @@
     justify-content: center;
     height: 60px;
     border-bottom: 1px solid #dedede;
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
 }
 
 .navItemsContainer {
     display: flex;
-    max-width: calc(975px + 40px) ;
+    max-width: 975px;
     padding: 0px 20px;
     align-items: center;
 }

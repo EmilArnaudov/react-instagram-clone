@@ -1,0 +1,165 @@
+.container {
+    background-color: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+}
+
+.header {
+    display: flex;
+    padding: 12px;
+    gap: 5px;
+    border-bottom: 1px solid #e8e8e8;;
+}
+
+.profilePicContainer {
+    width: 10%;
+}
+
+.profilePic {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+.userDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: calc(100% - 50px);
+}
+
+.location {
+    font-size: 12px;
+    color: gray;
+}
+
+.username {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.ellipsisContainer {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+
+.image {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.actions {
+    display: flex;
+    gap: 16px;
+    padding: 8px;
+}
+
+.actions > a {
+    text-decoration: none;
+    color: gray;
+    font-size: 24px;
+}
+
+
+.likedBy {
+    padding: 8px;
+}
+
+.likedBy > p {
+    font-size: 14px;
+}
+
+.likedBy > p > a {
+    text-decoration: none;
+    color: #372e5d;
+    font-weight: 600;
+}
+
+.likedBy > p > span {
+    color: #372e5d;
+    font-weight: 600;
+}
+
+.bold {
+    color: #372e5d;
+    font-weight: 600;
+}
+
+.commentSection {
+    font-size: 14px;
+    padding: 8px;
+}
+
+.firstComment {
+    display: flex;
+    gap: 6px
+
+}
+
+.viewAllComments {
+    margin: 12px 0px;
+}
+
+.viewAllCommentsText {
+    text-decoration: none;
+    color: #9994a9;
+}
+
+.commentInputContainer {
+    display: flex;
+    padding: 12px 6px;
+    height: 48px;
+    border-top: 1px solid lightgray;
+}
+
+.inputForm {
+    display: flex;
+    align-items: center;
+}
+
+.inputForm  input{
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.inputForm  input:focus {
+    border: none;
+    outline: none;
+}
+
+.inputFieldContainer {
+    width: 384px;
+}
+
+.smileyContainer {
+    padding: 8px 8px 8px 0px
+}
+
+.smileyContainer > i {
+    font-size: 22px;
+    color: lightgray;
+}
+
+.inputForm button {
+    background-color: transparent;
+    border: none;
+    color: #c5e7fe;
+    font-weight: 600;
+}
+
+.date {
+    margin: 16px 0;
+}
+
+.dateText {
+    font-size: 10px;
+    color: gray;
+    text-indent: 8px;
+}
