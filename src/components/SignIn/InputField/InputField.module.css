@@ -55,3 +55,18 @@
     font-size: 12px;
     letter-spacing: -0.2px;
 }
+
+.isValidIcon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+
+    color: lightgray;
+    font-size: 20px;
+    z-index: 2;
+}
+
+.hidden {
+    display: none;
+}

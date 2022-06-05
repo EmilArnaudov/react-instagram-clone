@@ -53,7 +53,9 @@ export default function UserProfile() {
                     <UserProfileNoPosts></UserProfileNoPosts>
                 </div>
             </main>
-            <Footer></Footer>
+            <div className={styles.footerContainer}>
+                <Footer></Footer>
+            </div>
         </section>
     )
 }

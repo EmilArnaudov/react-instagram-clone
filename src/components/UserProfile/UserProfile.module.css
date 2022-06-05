@@ -140,3 +140,9 @@
 .contentNavigatorDiv .spanActive {
     color: #393939;
 }
+
+.footerContainer {
+    padding-top: 24px;
+    padding-bottom: 48px;
+    background-color: #fafafa;
+}
