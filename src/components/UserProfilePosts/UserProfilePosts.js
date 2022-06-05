@@ -8,7 +8,6 @@ export default function UserProfilePosts() {
         <UserPostForGrid></UserPostForGrid>
         <UserPostForGrid></UserPostForGrid>
         <UserPostForGrid></UserPostForGrid>
-
         <UserPostForGrid></UserPostForGrid>
         <UserPostForGrid></UserPostForGrid>
         <UserPostForGrid></UserPostForGrid>
