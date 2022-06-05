@@ -1,0 +1,142 @@
+/*  --------------------- HEADER */
+
+.section {
+    display: flex;
+    flex-direction: column;
+}
+
+.userProfileContainer {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+}
+
+.main {
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+}
+
+.innerWrap {
+    display: flex;
+    padding: 30px 20px 0;
+    flex-grow: 1;
+    margin: 0 auto 30px;
+    max-width: 950px;
+    width: 100%;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    margin-bottom: 44px;
+}
+
+.userProfilePictureContainer {
+    width: calc(33% - 30px);
+
+}
+
+.userDetails {
+    width: 68%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profilePicInput {
+    display: none;
+}
+
+.profilePic {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.labelPicContainer {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.userDetails {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.usernameAndAction {
+    display: flex;
+    gap: 22px;
+    margin-top: 6px;
+}
+
+.username {
+    font-size: 26px;
+    font-weight: 200;
+    letter-spacing: -1.4px;
+    color: #2c2c2c;
+}
+
+.editProfileBtn {
+    font-weight: 500;
+    letter-spacing: -0.25px;
+    font-size: 14px;
+    background-color: transparent;
+    border: 1px solid #d4d4d4;
+    border-radius: 6px;
+    padding: 6px 8px;
+}
+
+.bold {
+    color: #2c2c2c;
+    font-weight: 500;
+}
+
+.activityDetails {
+    display: flex;
+    gap: 40px;
+    font-size: 14px;
+}
+
+.fullNameContainer {
+    margin-top: 10px;
+}
+
+
+/* -------------------CONTENT NAVIGATOR */
+
+.contentNavigator {
+    display: flex;
+    gap: 60px;
+    border-top: 1px solid #e8e8e8;
+    justify-content: center;
+    position: relative;
+}
+
+.contentNavigatorDiv > span{
+    font-size: 12px;
+    font-weight: 500;
+    color: gray;
+}
+
+.contentNavigatorDiv > span > i {
+    margin-right: 5px;
+}
+
+.contentNavigatorDiv {
+    padding: 14px 0px;
+    position: relative;
+}
+
+.active {
+    border-top: 1px solid #656565;
+    top: -2px;
+}
+
+.contentNavigatorDiv .spanActive {
+    color: #393939;
+}

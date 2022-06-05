@@ -3,9 +3,12 @@ import styles from './NewsFeed.module.css';
 import Post from '../Post/Post';
 import SuggestedUser from './SuggestedUser/SuggestedUser';
 import Footer from '../Footer/Footer';
+import Navigation from '../Navigation/Navigation';
 
 export default function NewsFeed() {
     return (
+        <>
+        <Navigation></Navigation>
         <main className={styles.main}>
             <div className={styles.contentSection}>
                 <div className={styles.postsSection}>
@@ -47,5 +50,6 @@ export default function NewsFeed() {
                 </div>
             </div>
         </main>
+        </>
     )
 }
