@@ -1,0 +1,10 @@
+.postContainer {
+    width: 292px;
+    height: 292px;
+}
+
+.postImage {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}

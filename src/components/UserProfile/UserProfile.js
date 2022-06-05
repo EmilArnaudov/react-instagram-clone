@@ -2,6 +2,7 @@ import styles from './UserProfile.module.css';
 
 import Footer from '../Footer/Footer';
 import Navigation from '../Navigation/Navigation';
+import UserProfilePosts from '../UserProfilePosts/UserProfilePosts';
 
 export default function UserProfile() {
     return (
@@ -47,6 +48,7 @@ export default function UserProfile() {
                             <span><i class="fa-solid fa-image-portrait"></i>TAGGED</span>
                         </div>
                     </div>
+                    <UserProfilePosts></UserProfilePosts>
                 </div>
             </main>
             <Footer></Footer>
