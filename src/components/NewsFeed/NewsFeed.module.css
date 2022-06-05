@@ -19,6 +19,88 @@
     margin-right: 32px;
 }
 
+/* *---------------------- SUGGESTIONS SECTION */
+
 .suggestionSection {
     width: calc(42.5% - 32px);
+    display: flex;
+    flex-direction: column;
+
+    position: sticky;
+    top: 76px;
+    align-self: flex-start;
+}
+
+.userDetails {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 66px;
+    margin-bottom: 10px;
+    margin-top: 16px;
+}
+
+.userProfilePicContainer{
+    width: 66px;
+    height: 66px;
+}
+
+.userProfilePicContainer > img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+.username {
+    color: #484848;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.userNames {
+    width: calc(61% - 32px);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.fullName {
+    color: #9f9f9f;
+    font-size: 14px;
+}
+
+.actionButton > button{
+    color: #4bb5fc;
+    font-weight: 600;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 11px;
+    letter-spacing: -0.2px;
+    display: block;
+    text-align: right;
+}
+
+.suggestionsForYou {
+    color: #9f9f9f;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.suggestionDivider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.suggestedUsersContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.footerContainer {
+    font-size: 10px;
+    color: lightgray;
+    margin-top: 30px;
+
 }

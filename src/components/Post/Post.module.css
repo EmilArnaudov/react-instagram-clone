@@ -77,17 +77,17 @@
 
 .likedBy > p > a {
     text-decoration: none;
-    color: #372e5d;
+    color: #2c2c2c;
     font-weight: 600;
 }
 
 .likedBy > p > span {
-    color: #372e5d;
+    color: #2c2c2c;
     font-weight: 600;
 }
 
 .bold {
-    color: #372e5d;
+    color: #2c2c2c;
     font-weight: 600;
 }
 
@@ -150,7 +150,7 @@
 .inputForm button {
     background-color: transparent;
     border: none;
-    color: #c5e7fe;
+    color: #4bb5fc;
     font-weight: 600;
 }
 

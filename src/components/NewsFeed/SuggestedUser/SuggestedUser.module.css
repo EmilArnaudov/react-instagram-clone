@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 6px;
+}
+
+.userPicContainer {
+    width: 10%;
+}
+
+.userPicContainer > img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+.whoFollows {
+    color: #9f9f9f;
+    font-size: 11px;
+}
+
+.username {
+    color: #484848;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.userDetails {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+}
+
+.followButton {
+    color: #4bb5fc;
+    font-weight: 600;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 11px;
+    letter-spacing: -0.2px;
+    text-decoration: none;
+}
