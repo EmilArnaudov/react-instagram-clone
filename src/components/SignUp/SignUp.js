@@ -1,12 +1,15 @@
 import styles from './SignUp.module.css';
 import InputField from '../SignIn/InputField/InputField';
-import { emailValidator, fullNameValidator, passwordValidator } from '../../validators/signUpFormValidators';
+import { emailValidator, fullNameValidator, passwordValidator, usernameValidator } from '../../validators/signUpFormValidators';
 import { FirebaseContext } from '../../App';
 
+import { useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function SignUp() {
+
+    const navigate = useNavigate()
 
     let [email, setEmail] = useState('');
     let [password, setPassword] = useState('');
@@ -18,12 +21,13 @@ export default function SignUp() {
     let [isFullNameValid, setIsFullNameValid] = useState(undefined);
     let [isUsernameValid, setIsUsernameValid] = useState(undefined);
 
-    const { db } = useContext(FirebaseContext)
+    const { db, auth } = useContext(FirebaseContext)
 
     //Set timeout containers for input fields with async validations so we can debounce them easy
     let emailValidatorTimeout;
     let passwordValidatorTimeout;
     let fullNameValidatorTimeout;
+    let usernameValidatorTimeout;
 
     function onChangeHandler(e) {
         if (e.target.id === 'email') {
@@ -54,15 +58,26 @@ export default function SignUp() {
             }, 500)
 
         } else if (e.target.id === 'username') {
-            e.preventDefault();
+            setUsername(e.target.value);
 
-            setUsername(e.target.value)
+            clearTimeout(usernameValidatorTimeout);
+            setTimeout(() => {
+                usernameValidator(db, e.target.value)
+                .then(isValid => {
+                    setIsUsernameValid(isValid);
+                })
+            }, 500)
         }
     }
 
     function submitFormHandler(e) {
         e.preventDefault();
-        createUserWithEmailAndPassword(email, password);
+        console.log('form submitted');
+        createUserWithEmailAndPassword(auth, email, password)
+            .then(userCredentials => {
+                navigate('/');
+            })
+        
     }
 
     return (
@@ -103,6 +118,7 @@ export default function SignUp() {
                         onChangeHandler={onChangeHandler}
                         inputName="username"
                         inputValue={username}
+                        isValid={isUsernameValid}
                     ></InputField>
                     <InputField 
                         onChangeHandler={onChangeHandler}
@@ -114,7 +130,11 @@ export default function SignUp() {
                         <p>People who use our service may have uploaded your contact information to Instagram. <b>Learn More</b></p>
                         <p>By signing up, you agree to our Terms . Learn how we collect, use and share your data in our <b>Data Policy</b> and how we use cookies and similar technology in our <b>Cookies Policy</b> .</p>
                     </div>
-                    <button disabled >Sign Up</button>
+                    <button 
+                        className={(isPasswordValid && isEmailValid && isUsernameValid && isFullNameValid) ? '' : styles.buttonDisabled} 
+                        disabled={(isPasswordValid && isEmailValid && isUsernameValid && isFullNameValid) ? '' : true} >
+                        Sign Up
+                    </button>
                 </form>
 
             </div>

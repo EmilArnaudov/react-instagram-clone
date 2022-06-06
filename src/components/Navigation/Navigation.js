@@ -16,16 +16,16 @@ export default function Navigation() {
                 <div className={[styles.navSectionLong, styles.right].join(' ')}>
                     <div className={styles.navMenu}>
                         <div className={styles.navMenuIconDiv}>
-                            <i class="fa-solid fa-house"></i>
+                            <i className="fa-solid fa-house"></i>
                         </div>
                         <div className={styles.navMenuIconDiv}>
-                            <i class="fa-solid fa-paper-plane"></i> 
+                            <i className="fa-solid fa-paper-plane"></i> 
                         </div>
                         <div className={styles.navMenuIconDiv}>
-                            <i class="fa-solid fa-circle-plus"></i>
+                            <i className="fa-solid fa-circle-plus"></i>
                         </div>
                         <div className={styles.navMenuIconDiv}>
-                            <i class="fa-solid fa-heart"></i>
+                            <i className="fa-solid fa-heart"></i>
                         </div>
                         <div className={styles.userProfilePic}>
                             <img className={styles.profilePic} src="/images/defaultPic.jpg" alt="" />

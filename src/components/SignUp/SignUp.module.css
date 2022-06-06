@@ -116,7 +116,7 @@
 
 
 .form > button {
-    /* background-color: #b2dffc; */
+
     background-color: #0095f6;;
     border: none;
     outline: none;
@@ -126,6 +126,10 @@
     letter-spacing: -0.2px;
     padding: 6px;
     margin: 15px 0px;
+}
+
+.form > .buttonDisabled {
+    background-color: #b2dffc;
 }
 
 /* -------------------LEGAL THINGS */

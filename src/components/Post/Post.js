@@ -12,15 +12,15 @@ export default function Post() {
                     <p className={styles.location}>the location</p>
                 </div>
                 <div className={styles.ellipsisContainer}>
-                <i class="fa-solid fa-ellipsis"></i>
+                <i className="fa-solid fa-ellipsis"></i>
                 </div>
             </div>
             <div className={styles.imageContainer}>
                 <img className={styles.image} src="/images/462.png" alt="" />
             </div>
             <div className={styles.actions}>
-                <a href=""><i class="fa-solid fa-heart"></i></a>
-                <a href=""><i class="fa-solid fa-comment"></i></a>
+                <a href=""><i className="fa-solid fa-heart"></i></a>
+                <a href=""><i className="fa-solid fa-comment"></i></a>
             </div>
             <div className={styles.likedBy}>
                 <p>Liked by <span>mmarrin</span> and <a href="">52 others</a></p>
@@ -46,7 +46,7 @@ export default function Post() {
             <div className={styles.commentInputContainer}>
                     <form className={styles.inputForm}>
                         <div className={styles.smileyContainer}>
-                            <i class="fa-solid fa-face-smile"></i>
+                            <i className="fa-solid fa-face-smile"></i>
                         </div>
                         <div className={styles.inputFieldContainer}>
                             <input placeholder='Add a comment..' type="text" />

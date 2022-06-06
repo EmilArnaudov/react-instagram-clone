@@ -1,11 +1,34 @@
 import styles from './NewsFeed.module.css';
 
+import { CurrentUserContext, FirebaseContext } from '../../App';
 import Post from '../Post/Post';
 import SuggestedUser from './SuggestedUser/SuggestedUser';
 import Footer from '../Footer/Footer';
 import Navigation from '../Navigation/Navigation';
 
+import { signOut } from 'firebase/auth';
+import { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 export default function NewsFeed() {
+    const navigate = useNavigate();
+    const user = useContext(CurrentUserContext);
+    const { auth } = useContext(FirebaseContext);
+
+
+    useEffect(() => {
+        if (!user) {
+            navigate('/sign-in');
+        }
+    }, [])
+
+    function logoutHandler() {
+        signOut(auth)
+            .then(() => {
+                navigate('/sign-in')
+            })
+    }
+
     return (
         <>
         <Navigation></Navigation>
@@ -27,7 +50,7 @@ export default function NewsFeed() {
                             <p className={styles.fullName}>Full Name</p>
                         </div>
                         <div className={styles.actionButton}>
-                            <button>Logout</button>
+                            <button onClick={logoutHandler}>Logout</button>
                         </div>
                     </div>
 

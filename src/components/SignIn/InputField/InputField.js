@@ -27,7 +27,7 @@ export default function InputField({
     return (
         <div className={isActive ? inputContainerActiveClasses : inputContainerInactiveClasses}>
             <div className={styles.isValidIcon}>
-                {isValid === undefined ? '' : (isValid === true ? <i class="fa-solid fa-circle-check"></i> : <i class="fa-solid fa-circle-xmark"></i>)}
+                {isValid === undefined ? '' : (isValid === true ? <i className="fa-solid fa-circle-check"></i> : <i className="fa-solid fa-circle-xmark"></i>)}
             </div>
             <label htmlFor={inputName}>
                 <span className={inputValue.length > 0 ? spanActiveClasses : spanInactiveClasses}>{inputName}</span>
@@ -42,8 +42,6 @@ export default function InputField({
                 autoComplete='off'
                 required
             />
-            <input autoComplete="on" style={{ display: 'none' }}
-            id="fake-hidden-input-to-stop-google-address-lookup"></input>
          </div>
     )
 }
