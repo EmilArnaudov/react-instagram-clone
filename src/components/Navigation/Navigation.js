@@ -18,7 +18,7 @@ export default function Navigation({
             <div className={styles.navItemsContainer}>
                 <div className={styles.navSectionLong}>
                     <div className={styles.logoContainer}>
-                        <img className={styles.logo} src="/images/logo.png" alt="" />
+                        <Link to='/'><img className={styles.logo} src="/images/logo.png" alt="" /></Link>
                     </div>
                 </div>
                 <div className={styles.navSectionShort}>
@@ -28,19 +28,19 @@ export default function Navigation({
                 <div className={[styles.navSectionLong, styles.right].join(' ')}>
                     <div className={styles.navMenu}>
                         <div className={styles.navMenuIconDiv}>
-                            <i className="fa-solid fa-house"></i>
+                            <Link className={styles.link} to='/'><i className="fa-solid fa-house"></i></Link>
                         </div>
                         <div className={styles.navMenuIconDiv}>
-                            <i className="fa-solid fa-paper-plane"></i> 
+                            <Link className={styles.link} to='/guest02'><i className="fa-solid fa-paper-plane"></i></Link>
                         </div>
                         <div className={styles.navMenuIconDiv}>
-                            <i className="fa-solid fa-circle-plus"></i>
+                            <Link className={styles.link} to='/'><i className="fa-solid fa-circle-plus"></i></Link>
                         </div>
                         <div className={styles.navMenuIconDiv}>
-                            <i className="fa-solid fa-heart"></i>
+                            <Link className={styles.link} to='/'><i className="fa-solid fa-heart"></i></Link>
                         </div>
                         <div className={styles.userProfilePic}>
-                            <Link to={'/' + userData.username}><img className={styles.profilePic} src="/images/defaultPic.jpg" alt="" /></Link>
+                            <Link className={styles.link} to={'/' + userData.username}><img className={styles.profilePic} src="/images/defaultPic.jpg" alt="" /></Link>
                         </div>
                     </div>
                 </div>          

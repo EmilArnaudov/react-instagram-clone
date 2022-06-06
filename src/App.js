@@ -30,7 +30,7 @@ function App() {
   })
 
   useEffect(() => {
-    if (user && !userData) {
+    if (user && (!userData || user.email !== userData.email)) {
       getUserDataWithEmail(db, user.email)
       .then(userData => {
         setUserData(userData);

@@ -2,17 +2,22 @@ import styles from './UserProfile.module.css';
 
 import Footer from '../Footer/Footer';
 import Navigation from '../Navigation/Navigation';
-import UserProfilePosts from '../UserProfilePosts/UserProfilePosts';
 import UserProfileNoPosts from '../UserProfileNoPosts/UserProfileNoPosts';
+import useLoadProfileData from '../../hooks/useLoadProfileData';
 import { useContext } from 'react';
 import { CurrentUserContext } from '../../App';
 
 export default function UserProfile() {
     const { userData } = useContext(CurrentUserContext);
 
-    if (!userData) {
+    const visitedUserData = useLoadProfileData();
+
+
+    if (!visitedUserData) {
         return;
     }
+
+    const isOwnProfile = userData.email === visitedUserData.email
 
     return (
          <section className={styles.section}>
@@ -31,8 +36,11 @@ export default function UserProfile() {
                             </div>
                             <div className={styles.userDetails}>
                                 <div className={styles.usernameAndAction}>
-                                    <span className={styles.username}>{userData.username}</span>
-                                    <button  className={styles.editProfileBtn}>Edit Profile</button>
+                                    <span className={styles.username}>{visitedUserData.username}</span>
+                                    {isOwnProfile 
+                                    ? <button  className={styles.editProfileBtn}>Edit Profile</button> 
+                                    : <button  className={styles.followBtn}>Follow</button> }
+
                                 </div>
                                 <div className={styles.activityDetails}>
                                     <span className={styles.posts}><span className={styles.bold}>{userData.ownPosts.length}</span> posts</span>
