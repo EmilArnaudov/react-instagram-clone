@@ -40,7 +40,7 @@
 
 
 .form > button {
-    background-color: #b2dffc;
+    background-color: #0095f6;
     border: none;
     outline: none;
     color: white;
@@ -51,6 +51,9 @@
     margin: 15px 0px;
 }
 
+.form > .buttonDisabled {
+    background-color: #b2dffc;
+}
 
 /* ** ----- DIVIDER STYLES */
 

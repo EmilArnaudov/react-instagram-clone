@@ -4,6 +4,7 @@ import { emailValidator, fullNameValidator, passwordValidator, usernameValidator
 import { FirebaseContext } from '../../App';
 
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
@@ -77,6 +78,9 @@ export default function SignUp() {
             .then(userCredentials => {
                 navigate('/');
             })
+            .catch(error => {
+                console.log(error);
+            })
         
     }
 
@@ -130,7 +134,8 @@ export default function SignUp() {
                         <p>People who use our service may have uploaded your contact information to Instagram. <b>Learn More</b></p>
                         <p>By signing up, you agree to our Terms . Learn how we collect, use and share your data in our <b>Data Policy</b> and how we use cookies and similar technology in our <b>Cookies Policy</b> .</p>
                     </div>
-                    <button 
+                    <button
+
                         className={(isPasswordValid && isEmailValid && isUsernameValid && isFullNameValid) ? '' : styles.buttonDisabled} 
                         disabled={(isPasswordValid && isEmailValid && isUsernameValid && isFullNameValid) ? '' : true} >
                         Sign Up
@@ -142,7 +147,7 @@ export default function SignUp() {
 
 
             <div className={styles.noAccountDiv}>
-                <span>Have an account? <a href="">Sign in</a></span>
+                <span>Have an account? <Link to='/sign-in'>Sign in</Link></span>
             </div>
 
             <div className={styles.getTheApp}>

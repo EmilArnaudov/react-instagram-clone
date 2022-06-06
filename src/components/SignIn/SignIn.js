@@ -1,23 +1,42 @@
 import styles from './SignIn.module.css';
 import InputField from './InputField/InputField';
+import { emailValidator, passwordValidator } from '../../validators/signInFormValidators'
 
-import {useState} from 'react';
-
-export default function SignUp() {
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { FirebaseContext } from '../../App';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+ 
+export default function SignIn() {
+    const navigate = useNavigate();
+    const { auth } = useContext(FirebaseContext);
 
     let [email, setEmail] = useState('');
     let [password, setPassword] = useState('');
+    let [isEmailValid, setIsEmailValid] = useState(false);
+    let [isPasswordValid, setIsPasswordValid] = useState(false);
 
     function onChangeHandler(e) {
         if (e.target.id === 'email') {
             setEmail(e.target.value);
+
+            setIsEmailValid(emailValidator(e.target.value));
         } else {
             setPassword(e.target.value);
+
+            setIsPasswordValid(passwordValidator(e.target.value));
         }
     }
 
     function submitFormHandler(e) {
         e.preventDefault();
+        signInWithEmailAndPassword(auth, email, password)
+            .then(() => {
+                navigate('/')
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     return (
@@ -38,7 +57,9 @@ export default function SignUp() {
                             inputName="password"
                             inputValue={password}
                         ></InputField>
-                        <button>Log In</button>
+                        <button 
+                        disabled={(isEmailValid && isPasswordValid) ? '' : true}
+                        className={(isEmailValid && isPasswordValid) ? '' : styles.buttonDisabled} >Log In</button>
                     </form>
 
                     <div className={styles.dividerDiv}>
@@ -58,7 +79,7 @@ export default function SignUp() {
                 </div>
 
                 <div className={styles.noAccountDiv}>
-                    <span>Don't have an account? <a href="">Sign up</a></span>
+                    <span>Don't have an account? <Link to='/sign-up'>Sign up</Link></span>
                 </div>
 
                 <div className={styles.getTheApp}>
