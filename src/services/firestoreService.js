@@ -1,4 +1,5 @@
-import { doc, setDoc, getDoc, collection, query, getDocs, where } from "firebase/firestore"; 
+import { doc, setDoc, getDoc, collection, query, getDocs, where, updateDoc } from "firebase/firestore"; 
+import {ref, uploadBytes, getDownloadURL} from 'firebase/storage';
 
 export async function addNewUserToDatabase(db, data) {
     const userModel = {
@@ -35,4 +36,16 @@ export async function getUserDataWithUsername(db, username) {
     })
 
     return matches[0];
+}
+
+export async function updateUserProfilePic(db, email, url) {
+    const docRef = doc(db, "users", email);
+    updateDoc(docRef, {profilePic: url});
+}
+
+export async function uploadImageAndGetDownloadUrl(storage, file) {
+    let fileRef = ref(storage, Date.now() + '.png');
+    const snapshot = await uploadBytes(fileRef, file);
+    let url = await getDownloadURL(snapshot.ref);
+    return url;
 }

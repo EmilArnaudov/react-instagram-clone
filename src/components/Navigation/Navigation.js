@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 export default function Navigation({
 }) {
     const {userData} = useContext(CurrentUserContext)
-    console.log(userData);
 
     if (!userData) {
         return;
@@ -40,7 +39,14 @@ export default function Navigation({
                             <Link className={styles.link} to='/'><i className="fa-solid fa-heart"></i></Link>
                         </div>
                         <div className={styles.userProfilePic}>
-                            <Link className={styles.link} to={'/' + userData.username}><img className={styles.profilePic} src="/images/defaultPic.jpg" alt="" /></Link>
+                            <Link className={styles.link} 
+                            to={'/' + userData.username}>
+                                <img 
+                                className={styles.profilePic} 
+                                src={userData.profilePic.length > 0 ? userData.profilePic : "/images/defaultPic.jpg"} 
+                                alt=""
+                                 />
+                            </Link>
                         </div>
                     </div>
                 </div>          

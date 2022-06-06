@@ -44,11 +44,11 @@ export default function NewsFeed() {
                 <div className={styles.suggestionSection}>
                     <div className={styles.userDetails}>
                         <div className={styles.userProfilePicContainer}>
-                            <img src="/images/defaultPic.jpg" alt="" />
+                            <img src={userData.profilePic.length > 0 ? userData.profilePic : "/images/defaultPic.jpg"} alt="" />
                         </div>
                         <div className={styles.userNames}>
                             <p className={styles.username}>{userData.username}</p>
-                            <p className={styles.fullName}>d</p>
+                            <p className={styles.fullName}>{userData.fullName}</p>
                         </div>
                         <div className={styles.actionButton}>
                             <button onClick={logoutHandler}>Logout</button>

@@ -6,16 +6,17 @@ import UserProfile from './components/UserProfile/UserProfile';
 
 import { firebaseConfig } from './firebase';
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore'
+import { getFirestore, onSnapshot, doc } from 'firebase/firestore'
+import { getStorage } from 'firebase/storage'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { useState, createContext, useEffect } from 'react';
-import { getUserDataWithEmail } from './services/firestoreService';
 
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
+const storage = getStorage();
 
 export let CurrentUserContext = createContext();
 export let FirebaseContext = createContext();
@@ -31,16 +32,17 @@ function App() {
 
   useEffect(() => {
     if (user && (!userData || user.email !== userData.email)) {
-      getUserDataWithEmail(db, user.email)
-      .then(userData => {
-        setUserData(userData);
-      })
+      const unsub = onSnapshot(doc(db, "users", user.email), (doc) => {
+        setUserData(doc.data())
+      });
+
+      return unsub;
     }
   }, [user])
 
   return (
     <div className="App">
-      <FirebaseContext.Provider value={{db, auth}}>
+      <FirebaseContext.Provider value={{db, auth, storage}}>
         <CurrentUserContext.Provider value={{user, userData}}>
           <Router>
               <Routes>
