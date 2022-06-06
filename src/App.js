@@ -7,9 +7,10 @@ import UserProfile from './components/UserProfile/UserProfile';
 import { firebaseConfig } from './firebase';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore'
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import { useState, createContext } from 'react';
+import { useState, createContext, useEffect } from 'react';
+import { getUserDataWithEmail } from './services/firestoreService';
 
 
 const app = initializeApp(firebaseConfig);
@@ -22,21 +23,32 @@ export let FirebaseContext = createContext();
 function App() {
 
   let [user, setUser] = useState(null);
+  let [userData, setUserData] = useState(null);
 
   onAuthStateChanged(auth, (user) => {
     setUser(user);
   })
 
+  useEffect(() => {
+    if (user && !userData) {
+      getUserDataWithEmail(db, user.email)
+      .then(userData => {
+        setUserData(userData);
+      })
+    }
+  }, [user])
+
   return (
     <div className="App">
       <FirebaseContext.Provider value={{db, auth}}>
-        <CurrentUserContext.Provider value={user}>
+        <CurrentUserContext.Provider value={{user, userData}}>
           <Router>
               <Routes>
                 <Route path='/profile' element={<UserProfile/>}></Route>
                 <Route path='/sign-in' element={<SignIn/>}></Route>
                 <Route path='/sign-up' element={<SignUp/>}></Route>
                 <Route path='/' element={<NewsFeed/>}></Route>
+                <Route path='/:username' element={<UserProfile/>}></Route>
               </Routes>
           </Router>
         </CurrentUserContext.Provider>

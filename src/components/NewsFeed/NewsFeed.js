@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function NewsFeed() {
     const navigate = useNavigate();
-    const user = useContext(CurrentUserContext);
+    const {user, userData} = useContext(CurrentUserContext);
     const { auth } = useContext(FirebaseContext);
 
 
@@ -21,6 +21,7 @@ export default function NewsFeed() {
             navigate('/sign-in');
         }
     }, [])
+
 
     function logoutHandler() {
         signOut(auth)
@@ -31,7 +32,7 @@ export default function NewsFeed() {
 
     return (
         <>
-        <Navigation></Navigation>
+        <Navigation userData={userData}></Navigation>
         <main className={styles.main}>
             <div className={styles.contentSection}>
                 <div className={styles.postsSection}>
@@ -46,8 +47,8 @@ export default function NewsFeed() {
                             <img src="/images/defaultPic.jpg" alt="" />
                         </div>
                         <div className={styles.userNames}>
-                            <p className={styles.username}>the username</p>
-                            <p className={styles.fullName}>Full Name</p>
+                            <p className={styles.username}>{userData.username}</p>
+                            <p className={styles.fullName}>d</p>
                         </div>
                         <div className={styles.actionButton}>
                             <button onClick={logoutHandler}>Logout</button>

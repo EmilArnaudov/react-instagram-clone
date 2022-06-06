@@ -2,14 +2,21 @@ import styles from './SignIn.module.css';
 import InputField from './InputField/InputField';
 import { emailValidator, passwordValidator } from '../../validators/signInFormValidators'
 
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FirebaseContext } from '../../App';
+import { CurrentUserContext, FirebaseContext } from '../../App';
 import { signInWithEmailAndPassword } from 'firebase/auth';
  
 export default function SignIn() {
     const navigate = useNavigate();
     const { auth } = useContext(FirebaseContext);
+    const {user} = useContext(CurrentUserContext);
+
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    })
 
     let [email, setEmail] = useState('');
     let [password, setPassword] = useState('');

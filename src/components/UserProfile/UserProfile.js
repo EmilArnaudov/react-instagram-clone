@@ -4,8 +4,16 @@ import Footer from '../Footer/Footer';
 import Navigation from '../Navigation/Navigation';
 import UserProfilePosts from '../UserProfilePosts/UserProfilePosts';
 import UserProfileNoPosts from '../UserProfileNoPosts/UserProfileNoPosts';
+import { useContext } from 'react';
+import { CurrentUserContext } from '../../App';
 
 export default function UserProfile() {
+    const { userData } = useContext(CurrentUserContext);
+
+    if (!userData) {
+        return;
+    }
+
     return (
          <section className={styles.section}>
             <Navigation></Navigation>
@@ -23,16 +31,16 @@ export default function UserProfile() {
                             </div>
                             <div className={styles.userDetails}>
                                 <div className={styles.usernameAndAction}>
-                                    <span className={styles.username}>bachemo666</span>
+                                    <span className={styles.username}>{userData.username}</span>
                                     <button  className={styles.editProfileBtn}>Edit Profile</button>
                                 </div>
                                 <div className={styles.activityDetails}>
-                                    <span className={styles.posts}><span className={styles.bold}>0</span> posts</span>
-                                    <span className={styles.followers}><span className={styles.bold}>0</span> followers</span>
-                                    <span className={styles.following}><span className={styles.bold}>0</span> following</span>
+                                    <span className={styles.posts}><span className={styles.bold}>{userData.ownPosts.length}</span> posts</span>
+                                    <span className={styles.followers}><span className={styles.bold}>{userData.followers.length}</span> followers</span>
+                                    <span className={styles.following}><span className={styles.bold}>{userData.following.length}</span> following</span>
                                 </div>
                                 <div className={styles.fullNameContainer}>
-                                    <p className={styles.bold}>Kamil Alindrov</p>
+                                    <p className={styles.bold}>{userData.fullName}</p>
                                 </div>
                             </div>
                         </div>
@@ -40,13 +48,13 @@ export default function UserProfile() {
 
                     <div className={styles.contentNavigator}>
                         <div className={[styles.contentNavigatorDiv, styles.active].join(' ')}>
-                            <span className={styles.spanActive}><i class="fa-solid fa-table-cells"></i>POSTS</span>
+                            <span className={styles.spanActive}><i className="fa-solid fa-table-cells"></i>POSTS</span>
                         </div>
                         <div className={styles.contentNavigatorDiv}>
-                            <span><i class="fa-solid fa-bookmark"></i>SAVED</span>
+                            <span><i className="fa-solid fa-bookmark"></i>SAVED</span>
                         </div>
                         <div className={styles.contentNavigatorDiv}>
-                            <span><i class="fa-solid fa-image-portrait"></i>TAGGED</span>
+                            <span><i className="fa-solid fa-image-portrait"></i>TAGGED</span>
                         </div>
                     </div>
 

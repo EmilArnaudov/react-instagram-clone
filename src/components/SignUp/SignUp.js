@@ -1,28 +1,36 @@
 import styles from './SignUp.module.css';
 import InputField from '../SignIn/InputField/InputField';
 import { emailValidator, fullNameValidator, passwordValidator, usernameValidator } from '../../validators/signUpFormValidators';
-import { FirebaseContext } from '../../App';
+import { CurrentUserContext, FirebaseContext } from '../../App';
+import { addNewUserToDatabase } from '../../services/firestoreService';
 
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function SignUp() {
+    const { db, auth } = useContext(FirebaseContext)
+    const {user} = useContext(CurrentUserContext)
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    })
 
     let [email, setEmail] = useState('');
     let [password, setPassword] = useState('');
     let [fullName, setFullName] = useState('');
     let [username, setUsername] = useState('');
-
     let [isEmailValid, setIsEmailValid] = useState(undefined);
     let [isPasswordValid, setIsPasswordValid] = useState(undefined);
     let [isFullNameValid, setIsFullNameValid] = useState(undefined);
     let [isUsernameValid, setIsUsernameValid] = useState(undefined);
 
-    const { db, auth } = useContext(FirebaseContext)
+
 
     //Set timeout containers for input fields with async validations so we can debounce them easy
     let emailValidatorTimeout;
@@ -73,9 +81,10 @@ export default function SignUp() {
 
     function submitFormHandler(e) {
         e.preventDefault();
-        console.log('form submitted');
+
         createUserWithEmailAndPassword(auth, email, password)
             .then(userCredentials => {
+                addNewUserToDatabase(db, {email, fullName, username})
                 navigate('/');
             })
             .catch(error => {
