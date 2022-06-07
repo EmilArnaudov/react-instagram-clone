@@ -9,6 +9,7 @@ import { CurrentUserContext } from '../../App';
 import { FirebaseContext } from '../../App';
 import { updateUserProfilePic } from '../../services/firestoreService'
 import { uploadImageAndGetDownloadUrl } from '../../services/firestoreService'
+import { followUser } from '../../services/userService';
 
 export default function UserProfile() {
     const { userData } = useContext(CurrentUserContext);
@@ -26,6 +27,10 @@ export default function UserProfile() {
     async function imageUploadHandler(e) {
         let url = await uploadImageAndGetDownloadUrl(storage, e.target.files[0]);
         await updateUserProfilePic(db, userData.email, url)
+    }
+
+    function followButtonHandler() {
+        followUser(db, userData, visitedUserData);
     }
 
     return (
@@ -65,7 +70,10 @@ export default function UserProfile() {
                                     <span className={styles.username}>{visitedUserData.username}</span>
                                     {isOwnProfile 
                                     ? <button  className={styles.editProfileBtn}>Edit Profile</button> 
-                                    : <button  className={styles.followBtn}>Follow</button> }
+                                    : (visitedUserData.followers.includes(userData.email) 
+                                        ? <button  className={styles.editProfileBtn}>Message</button>
+                                        : <button onClick={followButtonHandler} className={styles.followBtn}>Follow</button>) 
+                                     }
 
                                 </div>
                                 <div className={styles.activityDetails}>

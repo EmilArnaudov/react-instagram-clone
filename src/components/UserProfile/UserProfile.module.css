@@ -108,6 +108,7 @@
     border: 1px solid #d4d4d4;
     border-radius: 6px;
     padding: 6px 8px;
+    cursor: pointer;
 }
 
 .bold {

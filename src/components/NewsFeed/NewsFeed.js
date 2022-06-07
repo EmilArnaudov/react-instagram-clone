@@ -8,7 +8,7 @@ import Navigation from '../Navigation/Navigation';
 
 import { signOut } from 'firebase/auth';
 import { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function NewsFeed() {
     const navigate = useNavigate();
@@ -44,10 +44,10 @@ export default function NewsFeed() {
                 <div className={styles.suggestionSection}>
                     <div className={styles.userDetails}>
                         <div className={styles.userProfilePicContainer}>
-                            <img src={userData.profilePic.length > 0 ? userData.profilePic : "/images/defaultPic.jpg"} alt="" />
+                            <Link to={'/' + userData.username} ><img src={userData.profilePic.length > 0 ? userData.profilePic : "/images/defaultPic.jpg"} alt="" /> </Link>
                         </div>
                         <div className={styles.userNames}>
-                            <p className={styles.username}>{userData.username}</p>
+                            <Link className={styles.username} to={'/' + userData.username}>{userData.username}</Link>
                             <p className={styles.fullName}>{userData.fullName}</p>
                         </div>
                         <div className={styles.actionButton}>
