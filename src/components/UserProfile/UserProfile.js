@@ -77,9 +77,9 @@ export default function UserProfile() {
 
                                 </div>
                                 <div className={styles.activityDetails}>
-                                    <span className={styles.posts}><span className={styles.bold}>{userData.ownPosts.length}</span> posts</span>
-                                    <span className={styles.followers}><span className={styles.bold}>{userData.followers.length}</span> followers</span>
-                                    <span className={styles.following}><span className={styles.bold}>{userData.following.length}</span> following</span>
+                                    <span className={styles.posts}><span className={styles.bold}>{visitedUserData.ownPosts.length}</span> posts</span>
+                                    <span className={styles.followers}><span className={styles.bold}>{visitedUserData.followers.length}</span> followers</span>
+                                    <span className={styles.following}><span className={styles.bold}>{visitedUserData.following.length}</span> following</span>
                                 </div>
                                 <div className={styles.fullNameContainer}>
                                     <p className={styles.bold}>{visitedUserData.fullName}</p>

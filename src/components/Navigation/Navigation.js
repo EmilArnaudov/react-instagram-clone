@@ -1,18 +1,25 @@
 import styles from './Navigation.module.css';
 import { CurrentUserContext } from '../../App'
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import CreatePostModal from '../CreatePostModal/CreatePostModal';
 
 export default function Navigation({
 }) {
     const {userData} = useContext(CurrentUserContext)
+
+    //Modal functions
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     if (!userData) {
         return;
     }
 
     return (
+        <>
         <nav className={styles.nav}>
             <div className={styles.navItemsContainer}>
                 <div className={styles.navSectionLong}>
@@ -33,7 +40,7 @@ export default function Navigation({
                             <Link className={styles.link} to='/guest02'><i className="fa-solid fa-paper-plane"></i></Link>
                         </div>
                         <div className={styles.navMenuIconDiv}>
-                            <Link className={styles.link} to='/'><i className="fa-solid fa-circle-plus"></i></Link>
+                            <span to='/' onClick={handleShow} className={styles.link}><i className="fa-solid fa-circle-plus"></i></span>
                         </div>
                         <div className={styles.navMenuIconDiv}>
                             <Link className={styles.link} to='/'><i className="fa-solid fa-heart"></i></Link>
@@ -53,5 +60,13 @@ export default function Navigation({
 
             </div>
         </nav>
+
+        <CreatePostModal
+            show={show}
+            handleClose={handleClose}
+            handleShow={handleShow}
+        ></CreatePostModal>
+
+        </>
     )
 }

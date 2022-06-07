@@ -1,5 +1,4 @@
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';

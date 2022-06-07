@@ -1,0 +1,54 @@
+/* MODAL STYLES -------------------- */
+
+.mainModal {
+    min-height: 75vh;
+    border-radius: 16px;
+    width: 90%;
+}
+
+.modalHeading {
+    font-size: 15px;
+    font-weight: 600;
+    width: 100%;
+    justify-content: center;
+}
+
+.modalBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.createPostContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.selectButton {
+    background-color: #0095f6;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    color: white;
+    border-radius: 4px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    padding: 8px 10px;
+    margin: 15px 0px;
+}
+
+.createPostImageContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.createPostImage {
+    width: 30%;
+}
+
+.dragPhotoText {
+    font-size: 20px;
+}

@@ -30,6 +30,10 @@ export default function NewsFeed() {
             })
     }
 
+    if (!userData) {
+        return;
+    }
+
     return (
         <>
         <Navigation userData={userData}></Navigation>

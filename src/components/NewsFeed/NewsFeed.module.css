@@ -60,6 +60,10 @@
     text-decoration: none;
 }
 
+.username:hover {
+    color: #323232;
+}
+
 .userNames {
     width: calc(61% - 32px);
     display: flex;

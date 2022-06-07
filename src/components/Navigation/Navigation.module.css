@@ -71,8 +71,14 @@
 
 }
 
+
 .link {
     color: gray;
+    cursor: pointer;
+}
+
+.link:hover {
+    color: #3d3d3d;
 }
 
 .right {
@@ -92,3 +98,4 @@
     object-fit: cover;
     object-position: center;
 }
+
