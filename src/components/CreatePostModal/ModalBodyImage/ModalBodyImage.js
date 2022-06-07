@@ -7,9 +7,9 @@ import { createNewPost } from '../../../services/postService';
 
 export default function ModalBodyImage({
     Modal,
-    changePostImageHandler,
     handleClose,
     imageUrl,
+    reset
 }) {
     const { db } = useContext(FirebaseContext);
     const { userData } = useContext(CurrentUserContext);
@@ -57,7 +57,12 @@ export default function ModalBodyImage({
 
     function createPostHandler() {
         createNewPost(db, caption, taggedPeople, location, imageUrl, userData.username, userData.profilePic);
+        reset();
         handleClose();
+    }
+
+    function changePostImageHandler() {
+        reset();
     }
 
     if (!userData) {

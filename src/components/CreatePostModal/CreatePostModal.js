@@ -47,6 +47,10 @@ export default function CreatePostModal({
         }
     }
 
+    const reset = () => {
+        setUploadUrl('');
+    }
+
     return (
         <Modal
             contentClassName={styles.mainModal}
@@ -68,6 +72,7 @@ export default function CreatePostModal({
                     Modal={Modal}
                     imageUrl={uploadUrl}
                     handleClose={handleClose}
+                    reset={reset}
                 >
                   </ModalBodyImage>}
         </Modal>

@@ -1,4 +1,6 @@
-import {doc, addDoc, collection} from 'firebase/firestore'
+import {doc, addDoc, collection} from 'firebase/firestore';
+import { updateTaggedPeoplePosts, updateUserPosts } from './userService';
+
 
 export async function createNewPost(db, caption, taggedPeople, location, imageUrl, ownerUsername, ownerProfilePic) {
     const postModel = {
@@ -14,9 +16,10 @@ export async function createNewPost(db, caption, taggedPeople, location, imageUr
     }
 
     const postRef = collection(db, "posts");
-    const docSnap = await addDoc(postRef, postModel);
+    const docRef = await addDoc(postRef, postModel);
 
-    console.log(docSnap);
+    updateUserPosts(db, docRef.id, ownerUsername);
+    updateTaggedPeoplePosts(db, docRef.id, taggedPeople);
 }   
 
 

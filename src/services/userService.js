@@ -1,4 +1,5 @@
 import {doc, updateDoc, arrayUnion} from 'firebase/firestore'
+import { getUserDataWithUsername } from './firestoreService'
 
 export async function followUser(db, currentUser, followedUser) {
     const docRefcurrentUser = doc(db, "users", currentUser.email);
@@ -6,5 +7,18 @@ export async function followUser(db, currentUser, followedUser) {
     await Promise.all([updateDoc(docRefcurrentUser, {following: arrayUnion(followedUser.email)}),
                         updateDoc(docReffollowedUser, {followers: arrayUnion(currentUser.email)})])
 
+}
 
+export async function updateUserPosts(db, postId, username) {
+    const userData = await getUserDataWithUsername(db, username);
+
+    const docRef = doc(db, "users", userData.email);
+    updateDoc(docRef, {ownPosts: arrayUnion(postId)})
+}
+
+export async function updateTaggedPeoplePosts(db, postId, taggedPeople) {
+    for (const person of taggedPeople) {
+        const docRef = doc(db, "users", person.email);
+        updateDoc(docRef, {taggedPosts: arrayUnion(postId)})
+    }
 }
