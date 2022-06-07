@@ -7,6 +7,7 @@ import { uploadImageAndGetDownloadUrl } from '../../services/firestoreService';
 
 import { useContext, useState } from 'react';
 import { FirebaseContext } from '../../App';
+import ModalBodyImage from './ModalBodyImage/ModalBodyImage';
 
 export default function CreatePostModal({
     show,
@@ -53,10 +54,6 @@ export default function CreatePostModal({
             onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
             centered>
-            <Modal.Header className={styles.modalHeading} >
-            <h1>Create new post</h1>
-            </Modal.Header>
-            <Modal.Body className={styles.modalBody}>
                 {uploadUrl === '' 
                 ?<ModalBodyNoImage
                     dragOver={dragOver}
@@ -64,36 +61,15 @@ export default function CreatePostModal({
                     dragLeave={dragLeave}
                     fileDrop={fileDrop}
                     uploadUrl={uploadUrl}
+                    Modal={Modal}
+                    errorMessage={errorMessage}
                 ></ModalBodyNoImage>
-                : 'imageUploaded'}
-            {/* <div 
-            className={styles.dropContainer}
-            onDragOver={dragOver}
-            onDragEnter={dragEnter}
-            onDragLeave={dragLeave}
-            onDrop={fileDrop}
-            >
-                <div className={styles.createPostContent}>
-                        <div className={styles.createPostImageContainer}>
-                            <img className={styles.createPostImage} src="/images/createPostImage.png" alt="image" />
-                        </div>
-                        <div>
-                            <p className={styles.dragPhotoText}>Drag photos here.</p>
-                        </div>
-                        <div>
-                            <button className={styles.selectButton}>Select from computer</button>
-                        </div>
-                </div>
-            </div> */}
-            {errorMessage === '' 
-            ? ''
-            :
-            <div className={styles.error}>
-                <p>{errorMessage}</p>
-            </div>
-        }
-            
-            </Modal.Body>
+                : <ModalBodyImage
+                    Modal={Modal}
+                    imageUrl={uploadUrl}
+                    handleClose={handleClose}
+                >
+                  </ModalBodyImage>}
         </Modal>
     )
 }

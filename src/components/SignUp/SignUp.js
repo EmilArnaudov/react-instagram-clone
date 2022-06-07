@@ -4,6 +4,7 @@ import { emailValidator, fullNameValidator, passwordValidator, usernameValidator
 import { CurrentUserContext, FirebaseContext } from '../../App';
 import { addNewUserToDatabase } from '../../services/firestoreService';
 
+import debounce from 'lodash.debounce'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useState, useContext, useEffect } from 'react';
@@ -43,7 +44,7 @@ export default function SignUp() {
             setEmail(e.target.value);
             
             clearTimeout(emailValidatorTimeout);
-            setTimeout(() => {
+            emailValidatorTimeout = setTimeout(() => {
                 emailValidator(db, e.target.value)
                 .then(isValid => {
                     setIsEmailValid(isValid);
@@ -54,7 +55,7 @@ export default function SignUp() {
             setPassword(e.target.value);
 
             clearTimeout(passwordValidatorTimeout);
-            setTimeout(() => {
+            passwordValidatorTimeout = setTimeout(() => {
                 setIsPasswordValid(passwordValidator(e.target.value))
             }, 500)
 
@@ -62,7 +63,7 @@ export default function SignUp() {
             setFullName(e.target.value)
 
             clearTimeout(fullNameValidatorTimeout);
-            setTimeout(() => {
+            fullNameValidatorTimeout = setTimeout(() => {
                 setIsFullNameValid(fullNameValidator(e.target.value));
             }, 500)
 
@@ -70,7 +71,7 @@ export default function SignUp() {
             setUsername(e.target.value);
 
             clearTimeout(usernameValidatorTimeout);
-            setTimeout(() => {
+            usernameValidatorTimeout = setTimeout(() => {
                 usernameValidator(db, e.target.value)
                 .then(isValid => {
                     setIsUsernameValid(isValid);
