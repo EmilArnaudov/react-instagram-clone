@@ -7,14 +7,18 @@ import Footer from '../Footer/Footer';
 import Navigation from '../Navigation/Navigation';
 
 import { signOut } from 'firebase/auth';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { loadNewsFeedPosts } from '../../services/postService';
+import Loader from './Loader/Loader';
 
 export default function NewsFeed() {
     const navigate = useNavigate();
     const {user, userData} = useContext(CurrentUserContext);
     const { auth } = useContext(FirebaseContext);
 
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         if (!user) {
@@ -34,17 +38,35 @@ export default function NewsFeed() {
         return;
     }
 
+    function loadPostsData() {
+        loadNewsFeedPosts()
+            .then(posts => {
+                setPosts(oldState => oldState.concat(posts));
+            })
+    }
+
     return (
         <>
         <Navigation userData={userData}></Navigation>
         <main className={styles.main}>
             <div className={styles.contentSection}>
-                <div className={styles.postsSection}>
-                    <Post></Post>
-                    <Post></Post>
-                    <Post></Post>
-                    <Post></Post>
+                <div  className={styles.postsSection}>
+                    <InfiniteScroll
+                        dataLength={posts.length}
+                        next={loadPostsData}
+                        hasMore={true}
+                        loader={<Loader></Loader>}
+                        style={{overflow: 'none', height: '100%'}}
+                    >   
+                    <div id='scrollableDiv' className={styles.infinitePosts}>
+                        {posts.map(post => <Post key={Date.now() + Math.random()} ></Post>)}
+                    </div>
+
+                    </InfiniteScroll>
                 </div>
+
+
+
                 <div className={styles.suggestionSection}>
                     <div className={styles.userDetails}>
                         <div className={styles.userProfilePicContainer}>

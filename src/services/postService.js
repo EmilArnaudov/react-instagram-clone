@@ -12,7 +12,8 @@ export async function createNewPost(db, caption, taggedPeople, location, imageUr
         imageUrl,
         likes: [],
         comments: [],
-        date: getPostDate()
+        date: getPostDate(),
+        time: Date.now(),
     }
 
     const postRef = collection(db, "posts");
@@ -20,7 +21,15 @@ export async function createNewPost(db, caption, taggedPeople, location, imageUr
 
     updateUserPosts(db, docRef.id, ownerUsername);
     updateTaggedPeoplePosts(db, docRef.id, taggedPeople);
-}   
+}
+
+
+export async function loadNewsFeedPosts() {
+    let arr = []
+    arr.length = 6;
+    arr.fill(1);
+    return arr 
+}
 
 
 function getPostDate() {
