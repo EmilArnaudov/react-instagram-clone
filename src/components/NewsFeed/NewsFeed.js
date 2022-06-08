@@ -64,7 +64,7 @@ export default function NewsFeed() {
                         style={{overflow: 'none', height: '100%'}}
                     >   
                     <div id='scrollableDiv' className={styles.infinitePosts}>
-                        {posts.map(post => <Post key={Date.now() + Math.random()} ></Post>)}
+                        {posts.map(post => <Post postData={post} key={Date.now() + Math.random()} ></Post>)}
                     </div>
 
                     </InfiniteScroll>

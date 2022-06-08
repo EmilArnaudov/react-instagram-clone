@@ -1,4 +1,4 @@
-import {doc, addDoc, collection, getDoc, query, orderBy, getDocs, limit} from 'firebase/firestore';
+import {doc, addDoc, collection, getDoc, query, orderBy, getDocs, limit, updateDoc, arrayUnion} from 'firebase/firestore';
 import { updateTaggedPeoplePosts, updateUserPosts, updatePeopleNewsFeeds } from './userService';
 
 
@@ -26,7 +26,6 @@ export async function createNewPost(db, caption, taggedPeople, location, imageUr
 
 
 export async function loadNewsFeedPosts(db, email, limitNumberToAdd) {
-    let posts = [];
     let postsIds = [];
 
     const docRefF = doc(db, 'newsFeeds', email)
@@ -38,15 +37,31 @@ export async function loadNewsFeedPosts(db, email, limitNumberToAdd) {
             postsIds.push(doc.data())
     });
 
+    return loadPostsById(db, postsIds);
+}
+
+export async function loadPostsById(db, postsIds) {
+    let posts = [];
+
     for (const postId of postsIds) {
         const docRef = doc(db, 'posts', postId.postId);
         let docSnap = await getDoc(docRef);
-        posts.push(docSnap.data());
+        posts.push({...docSnap.data(), id: docSnap.id});
     }
 
     return posts;
 }
 
+
+export async function addCommentToPost(db, comment, postId) {
+    const docRef = doc(db, 'posts', postId);
+    return updateDoc(docRef, {comments: arrayUnion(comment)});
+}
+
+export async function updatePostLikes(db, username, postId) {
+    const docRef = doc(db, 'posts', postId);
+    return updateDoc(docRef, {likes: arrayUnion(username)});
+}
 
 function getPostDate() {
     let date = new Date()
