@@ -15,7 +15,12 @@ export async function addNewUserToDatabase(db, data) {
         profilePic: '',
     }
 
-    await setDoc(doc(db, "users", data.email), userModel);
+    const newsFeed = {
+        ownerEmail: data.email,
+        posts: [],
+    }
+
+    await Promise.all([setDoc(doc(db, "users", data.email), userModel), setDoc(doc(db, "newsFeeds", data.email), userModel)]);
 }
 
 

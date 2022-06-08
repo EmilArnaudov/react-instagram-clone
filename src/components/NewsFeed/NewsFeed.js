@@ -16,9 +16,10 @@ import Loader from './Loader/Loader';
 export default function NewsFeed() {
     const navigate = useNavigate();
     const {user, userData} = useContext(CurrentUserContext);
-    const { auth } = useContext(FirebaseContext);
+    const { auth, db } = useContext(FirebaseContext);
 
     const [posts, setPosts] = useState([]);
+    const [loadMore, setLoadMore] = useState(true);
 
     useEffect(() => {
         if (!user) {
@@ -39,9 +40,13 @@ export default function NewsFeed() {
     }
 
     function loadPostsData() {
-        loadNewsFeedPosts()
-            .then(posts => {
-                setPosts(oldState => oldState.concat(posts));
+        loadNewsFeedPosts(db, userData.email, posts.length)
+            .then(postsData => {
+                console.log(postsData);
+                if (postsData.length < posts.length + 5) {
+                    setLoadMore(false);
+                }
+                setPosts(oldState => oldState.concat(postsData));
             })
     }
 
@@ -54,7 +59,7 @@ export default function NewsFeed() {
                     <InfiniteScroll
                         dataLength={posts.length}
                         next={loadPostsData}
-                        hasMore={true}
+                        hasMore={loadMore}
                         loader={<Loader></Loader>}
                         style={{overflow: 'none', height: '100%'}}
                     >   

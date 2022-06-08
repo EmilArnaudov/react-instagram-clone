@@ -1,5 +1,5 @@
-import {doc, addDoc, collection} from 'firebase/firestore';
-import { updateTaggedPeoplePosts, updateUserPosts } from './userService';
+import {doc, addDoc, collection, getDoc, query, orderBy, getDocs, limit} from 'firebase/firestore';
+import { updateTaggedPeoplePosts, updateUserPosts, updatePeopleNewsFeeds } from './userService';
 
 
 export async function createNewPost(db, caption, taggedPeople, location, imageUrl, ownerUsername, ownerProfilePic) {
@@ -21,14 +21,30 @@ export async function createNewPost(db, caption, taggedPeople, location, imageUr
 
     updateUserPosts(db, docRef.id, ownerUsername);
     updateTaggedPeoplePosts(db, docRef.id, taggedPeople);
+    updatePeopleNewsFeeds(db, docRef.id, ownerUsername)
 }
 
 
-export async function loadNewsFeedPosts() {
-    let arr = []
-    arr.length = 6;
-    arr.fill(1);
-    return arr 
+export async function loadNewsFeedPosts(db, email, limitNumberToAdd) {
+    let posts = [];
+    let postsIds = [];
+
+    const docRefF = doc(db, 'newsFeeds', email)
+    const collectionRef = collection(docRefF, 'posts');
+    const q = query(collectionRef, orderBy("time", "desc"), limit(5 + limitNumberToAdd));
+    
+    const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            postsIds.push(doc.data())
+    });
+
+    for (const postId of postsIds) {
+        const docRef = doc(db, 'posts', postId.postId);
+        let docSnap = await getDoc(docRef);
+        posts.push(docSnap.data());
+    }
+
+    return posts;
 }
 
 

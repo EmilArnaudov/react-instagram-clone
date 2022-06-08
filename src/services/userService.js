@@ -1,4 +1,4 @@
-import {doc, updateDoc, arrayUnion} from 'firebase/firestore'
+import {doc, updateDoc, arrayUnion, collection, addDoc} from 'firebase/firestore'
 import { getUserDataWithUsername } from './firestoreService'
 
 export async function followUser(db, currentUser, followedUser) {
@@ -20,5 +20,14 @@ export async function updateTaggedPeoplePosts(db, postId, taggedPeople) {
     for (const person of taggedPeople) {
         const docRef = doc(db, "users", person.email);
         updateDoc(docRef, {taggedPosts: arrayUnion(postId)})
+    }
+}
+
+export async function updatePeopleNewsFeeds(db, postId, username) {
+    const userData = await getUserDataWithUsername(db, username);
+
+    for (const user of userData.followers) {
+        const collectionRef = collection(db, 'newsFeeds', user, 'posts');
+        await addDoc(collectionRef, {postId, time: Date.now()})
     }
 }
