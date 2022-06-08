@@ -116,7 +116,7 @@ export default function Post({
                 <p className={styles.dateText}>{post.date}</p>
             </div>
 
-            <div className={styles.commentInputContainer}>
+                <div className={styles.commentInputContainer}>
                     <form onSubmit={addComment} className={styles.inputForm}>
                         <div className={styles.smileyContainer}>
                             <i className="fa-solid fa-face-smile"></i>
