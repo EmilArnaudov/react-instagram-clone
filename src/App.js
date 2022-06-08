@@ -4,6 +4,7 @@ import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
 import NewsFeed from './components/NewsFeed/NewsFeed';
 import UserProfile from './components/UserProfile/UserProfile';
+import PostDetails from './components/PostDetails/PostDetails';
 
 import { firebaseConfig } from './firebase';
 import { initializeApp } from 'firebase/app';
@@ -47,11 +48,11 @@ function App() {
         <CurrentUserContext.Provider value={{user, userData}}>
           <Router>
               <Routes>
-                <Route path='/profile' element={<UserProfile/>}></Route>
+                <Route path='/' element={<NewsFeed/>}></Route>
                 <Route path='/sign-in' element={<SignIn/>}></Route>
                 <Route path='/sign-up' element={<SignUp/>}></Route>
-                <Route path='/' element={<NewsFeed/>}></Route>
                 <Route path='/:username' element={<UserProfile/>}></Route>
+                <Route path='/p/:postId'element={<PostDetails/>} ></Route>
               </Routes>
           </Router>
         </CurrentUserContext.Provider>

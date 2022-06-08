@@ -45,6 +45,12 @@
     display: flex;
     align-items: center;
     justify-content: right;
+
+
+}
+
+.ellipsisContainer > a {
+    color: black;
 }
 
 

@@ -44,14 +44,18 @@ export async function loadPostsById(db, postsIds) {
     let posts = [];
 
     for (const postId of postsIds) {
-        const docRef = doc(db, 'posts', postId.postId);
-        let docSnap = await getDoc(docRef);
-        posts.push({...docSnap.data(), id: docSnap.id});
+        const post = await loadPostById(db, postId.postId);
+        posts.push(post);
     }
 
     return posts;
 }
 
+export async function loadPostById(db, postId) {
+    const docRef = doc(db, 'posts', postId);
+    let docSnap = await getDoc(docRef);
+    return {...docSnap.data(), id: docSnap.id};
+}
 
 export async function addCommentToPost(db, comment, postId) {
     const docRef = doc(db, 'posts', postId);

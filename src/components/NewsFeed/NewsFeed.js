@@ -20,6 +20,7 @@ export default function NewsFeed() {
 
     const [posts, setPosts] = useState([]);
     const [loadMore, setLoadMore] = useState(true);
+    const [initialLoad, setInitialLoad] = useState(false);
 
     useEffect(() => {
         if (!user) {
@@ -27,6 +28,12 @@ export default function NewsFeed() {
         }
     }, [])
 
+    useEffect(() => {
+        if(userData) {
+            loadPostsData();
+        }
+        
+    }, [initialLoad])
 
     function logoutHandler() {
         signOut(auth)
@@ -39,10 +46,24 @@ export default function NewsFeed() {
         return;
     }
 
+    // I have to do this because the use effect tries to render while userData is still null and crashes the app
+    // And if we do not have an initial load the content loads only after the users starts scrolling which is not a good ux
+    //Put in if to prevent infinite loop
+    if (!initialLoad) {
+        //Activate first post load
+        if(userData) {
+            setInitialLoad(true);
+        } else {
+            setInitialLoad(false);
+        }
+        
+    }
+
+
+
     function loadPostsData() {
         loadNewsFeedPosts(db, userData.email, posts.length)
             .then(postsData => {
-                console.log(postsData);
                 if (postsData.length < posts.length + 5) {
                     setLoadMore(false);
                 }

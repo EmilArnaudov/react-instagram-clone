@@ -1,7 +1,8 @@
 import { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+
 import { CurrentUserContext, FirebaseContext } from '../../App';
 import styles from './Post.module.css';
-
 import { addCommentToPost, updatePostLikes } from '../../services/postService';
 
 export default function Post({
@@ -60,7 +61,7 @@ export default function Post({
                     <p className={styles.location}>{post.location}</p>
                 </div>
                 <div className={styles.ellipsisContainer}>
-                <i className="fa-solid fa-ellipsis"></i>
+                    <Link to={'/p/' + post.id}><i className="fa-solid fa-ellipsis"></i></Link>
                 </div>
             </div>
             <div className={styles.imageContainer}>
