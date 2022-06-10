@@ -15,12 +15,11 @@ import Loader from './Loader/Loader';
 
 export default function NewsFeed() {
     const navigate = useNavigate();
-    const {user, userData} = useContext(CurrentUserContext);
+    const { user, userData } = useContext(CurrentUserContext);
     const { auth, db } = useContext(FirebaseContext);
 
     const [posts, setPosts] = useState([]);
     const [loadMore, setLoadMore] = useState(true);
-    const [initialLoad, setInitialLoad] = useState(false);
 
 
 
@@ -28,14 +27,23 @@ export default function NewsFeed() {
         if (!user) {
             navigate('/sign-in');
         }
+
     }, [])
 
     useEffect(() => {
         if(userData) {
             loadPostsData();
         }
-        
-    }, [initialLoad])
+        console.log('i fire ');
+        return () => {
+            reset()
+        };
+    }, [userData])
+
+
+    const reset = () => {
+        setPosts([]);
+    }
 
     function logoutHandler() {
         signOut(auth)
@@ -48,30 +56,18 @@ export default function NewsFeed() {
         return;
     }
 
-    // I have to do this because the use effect tries to render while userData is still null and crashes the app
-    // And if we do not have an initial load the content loads only after the users starts scrolling which is not a good ux
-    //Put in if to prevent infinite loop
-    if (!initialLoad) {
-        //Activate first post load
-        if(userData) {
-            setInitialLoad(true);
-        } else {
-            setInitialLoad(false);
-        }
-        
-    }
-
-
-
     function loadPostsData() {
         loadNewsFeedPosts(db, userData.email, posts.length)
             .then(postsData => {
-                if (posts.length > 0 && posts.length < 5) {
-                    return;
-                }
-                setPosts(oldState => oldState.concat(postsData));
+                if (postsData.length < 5) {
+                    setLoadMore(false);
+                } 
+
+                setPosts(postsData);
             })
     }
+
+    // console.log(posts);
 
     return (
         <>
