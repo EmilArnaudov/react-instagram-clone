@@ -11,6 +11,10 @@
     border-bottom: 1px solid #e8e8e8;;
 }
 
+.nounderline {
+    text-decoration: none;
+}
+
 .profilePicContainer {
     width: 10%;
 }
@@ -39,6 +43,8 @@
 .username {
     font-weight: 500;
     font-size: 14px;
+    text-decoration: none;
+    color: #2c2c2c;
 }
 
 .ellipsisContainer {

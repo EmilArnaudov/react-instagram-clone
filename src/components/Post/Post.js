@@ -54,10 +54,10 @@ export default function Post({
         <div className={styles.container}>
             <div className={styles.header}>
                 <div className={styles.profilePicContainer}>
-                    <img className={styles.profilePic} src={post.ownerProfilePic.length > 0 ? post.ownerProfilePic : "/images/defaultPic.jpg"} alt="" />
+                    <Link to={post.ownerUsername}><img className={styles.profilePic} src={post.ownerProfilePic.length > 0 ? post.ownerProfilePic : "/images/defaultPic.jpg"} alt="" /></Link>
                 </div>
                 <div className={styles.userDetails}>
-                    <p className={styles.username}>{post.ownerUsername}</p>
+                    <Link className={styles.nounderline} to={post.ownerUsername}><p className={styles.username}>{post.ownerUsername}</p></Link>
                     <p className={styles.location}>{post.location}</p>
                 </div>
                 <div className={styles.ellipsisContainer}>

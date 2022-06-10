@@ -103,10 +103,12 @@ export default function UserProfile() {
                             <span><i className="fa-solid fa-image-portrait"></i>TAGGED</span>
                         </div>
                     </div>
-
-                    <UserProfileNoPosts></UserProfileNoPosts>
+                    {(userData.ownPosts.length === 0 ? <UserProfileNoPosts isOwnProfile={isOwnProfile} ></UserProfileNoPosts> : '')}
+                        
                 </div>
             </main>
+
+
             <div className={styles.footerContainer}>
                 <Footer></Footer>
             </div>
