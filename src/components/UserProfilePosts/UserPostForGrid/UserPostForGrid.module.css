@@ -1,10 +1,57 @@
 .postContainer {
     width: 292px;
     height: 292px;
+    position: relative;
 }
 
 .postImage {
-    width: 100%;
+    width: 292px;
+    height: 292px;
     object-fit: cover;
     object-position: center;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: 0;
+}
+
+.background:hover {
+    opacity: 0.35;
+    cursor: pointer;
+}
+
+.likesAndComments {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    gap: 20px;
+    font-size: 22px;
+}
+
+.show {
+    display: flex;
+    color: white;
+}
+
+.hide {
+    display: none;
+}
+
+.likes {
+    display: flex;
+    gap: 3px;
+}
+
+.comments {
+    display: flex;
+    gap: 3px;
 }

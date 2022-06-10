@@ -44,7 +44,8 @@ export async function loadPostsById(db, postsIds) {
     let posts = [];
 
     for (const postId of postsIds) {
-        const post = await loadPostById(db, postId.postId);
+        let id = postId.postId ? postId.postId : postId; 
+        const post = await loadPostById(db, id);
         posts.push(post);
     }
 

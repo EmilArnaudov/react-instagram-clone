@@ -10,6 +10,7 @@ import { FirebaseContext } from '../../App';
 import { updateUserProfilePic } from '../../services/firestoreService'
 import { uploadImageAndGetDownloadUrl } from '../../services/firestoreService'
 import { followUser } from '../../services/userService';
+import UserProfilePosts from '../UserProfilePosts/UserProfilePosts';
 
 export default function UserProfile() {
     const { userData } = useContext(CurrentUserContext);
@@ -103,7 +104,8 @@ export default function UserProfile() {
                             <span><i className="fa-solid fa-image-portrait"></i>TAGGED</span>
                         </div>
                     </div>
-                    {(userData.ownPosts.length === 0 ? <UserProfileNoPosts isOwnProfile={isOwnProfile} ></UserProfileNoPosts> : '')}
+                    {(visitedUserData.ownPosts.length === 0 ? <UserProfileNoPosts isOwnProfile={isOwnProfile} ></UserProfileNoPosts> : '')}
+                    {visitedUserData.ownPosts.length > 0 ? <UserProfilePosts postsIds={visitedUserData.ownPosts}/> : ''}
                         
                 </div>
             </main>
