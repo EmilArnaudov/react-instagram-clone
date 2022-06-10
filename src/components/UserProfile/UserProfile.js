@@ -4,26 +4,40 @@ import Footer from '../Footer/Footer';
 import Navigation from '../Navigation/Navigation';
 import UserProfileNoPosts from '../UserProfileNoPosts/UserProfileNoPosts';
 import useLoadProfileData from '../../hooks/useLoadProfileData';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CurrentUserContext } from '../../App';
 import { FirebaseContext } from '../../App';
 import { updateUserProfilePic } from '../../services/firestoreService'
 import { uploadImageAndGetDownloadUrl } from '../../services/firestoreService'
 import { followUser } from '../../services/userService';
 import UserProfilePosts from '../UserProfilePosts/UserProfilePosts';
+import UserProfileNoSaved from '../UserProfileNoSaved/UserProfileNoSaved';
 
 export default function UserProfile() {
     const { userData } = useContext(CurrentUserContext);
     const { db, storage } = useContext(FirebaseContext)
 
     const visitedUserData = useLoadProfileData();
-
+    const [content, setContent] = useState('posts')
 
     if (!visitedUserData || !userData) {
         return;
     }
 
     const isOwnProfile = userData.email === visitedUserData.email
+    const navigatorActiveClass = [styles.contentNavigatorDiv, styles.active].join(' ');
+
+    const displaySavedPosts = () => {
+        setContent('saved');
+    }
+
+    const displayPosts = () => {
+        setContent('posts');
+    }
+
+    const displayTaggedPosts = () => {
+        setContent('tagged');
+    }
 
     async function imageUploadHandler(e) {
         let url = await uploadImageAndGetDownloadUrl(storage, e.target.files[0]);
@@ -90,22 +104,26 @@ export default function UserProfile() {
                     </header>
 
                     <div className={styles.contentNavigator}>
-                        <div className={[styles.contentNavigatorDiv, styles.active].join(' ')}>
-                            <span className={styles.spanActive}><i className="fa-solid fa-table-cells"></i>POSTS</span>
+                        <div className={content === 'posts' ? navigatorActiveClass : styles.contentNavigatorDiv}>
+                            <span onClick={displayPosts} className={styles.spanActive}><i className="fa-solid fa-table-cells"></i>POSTS</span>
                         </div>
                         {isOwnProfile
                         ?                         
-                        <div className={styles.contentNavigatorDiv}>
-                            <span><i className="fa-solid fa-bookmark"></i>SAVED</span>
+                        <div className={content === 'saved' ? navigatorActiveClass : styles.contentNavigatorDiv}>
+                            <span onClick={displaySavedPosts}><i className="fa-solid fa-bookmark"></i>SAVED</span>
                         </div>
                         : ''
                         }
-                        <div className={styles.contentNavigatorDiv}>
-                            <span><i className="fa-solid fa-image-portrait"></i>TAGGED</span>
+                        <div className={content === 'tagged' ? navigatorActiveClass : styles.contentNavigatorDiv}>
+                            <span onClick={displayTaggedPosts}><i className="fa-solid fa-image-portrait"></i>TAGGED</span>
                         </div>
                     </div>
-                    {(visitedUserData.ownPosts.length === 0 ? <UserProfileNoPosts isOwnProfile={isOwnProfile} ></UserProfileNoPosts> : '')}
-                    {visitedUserData.ownPosts.length > 0 ? <UserProfilePosts postsIds={visitedUserData.ownPosts}/> : ''}
+                    
+                    {(visitedUserData.ownPosts.length === 0 && content === 'posts') ? <UserProfileNoPosts isOwnProfile={isOwnProfile} ></UserProfileNoPosts> : ''}
+                    {(visitedUserData.ownPosts.length > 0 && content === 'posts') ? <UserProfilePosts postsIds={visitedUserData.ownPosts}/> : ''}
+
+                    {(visitedUserData.savedPosts.length === 0 && content === 'saved') ? <UserProfileNoSaved ></UserProfileNoSaved> : ''}
+                    {(visitedUserData.savedPosts.length > 0 && content === 'saved') ? <UserProfilePosts postsIds={visitedUserData.ownPosts}/> : ''}
                         
                 </div>
             </main>

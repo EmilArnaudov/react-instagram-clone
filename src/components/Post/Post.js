@@ -1,10 +1,10 @@
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Modal from 'react-bootstrap/Modal';
+import PostDetailsModal from '../PostDetailsModal/PostDetailsModal';
 import { CurrentUserContext, FirebaseContext } from '../../App';
 import styles from './Post.module.css';
 import { addCommentToPost, updatePostLikes } from '../../services/postService';
-import PostDetails from '../PostDetails/PostDetails';
+
 
 export default function Post({
     postData
@@ -101,7 +101,7 @@ export default function Post({
                     post.comments.length > 3 
                     ?
                     <div className={styles.viewAllComments}>
-                        <a href='' className={styles.viewAllCommentsText}>View all {post.comments.length} comments</a>
+                        <span onClick={handleShow} className={styles.viewAllCommentsText}>View all {post.comments.length} comments</span>
                     </div>
                     : ''
                 }
@@ -140,15 +140,7 @@ export default function Post({
         </div>
 
 
-        <Modal
-        contentClassName={styles.mainModal}
-        show={show} 
-        onHide={handleClose}
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        >
-            <PostDetails></PostDetails>
-        </Modal>
+        <PostDetailsModal postData={post} show={show} handleClose={handleClose}></PostDetailsModal>
         </>
     )
 }

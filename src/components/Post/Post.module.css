@@ -144,6 +144,12 @@
     color: #9994a9;
 }
 
+.viewAllCommentsText:hover {
+    text-decoration: none;
+    color: #5f5f60;
+    cursor: pointer;
+}
+
 .commentInputContainer {
     display: flex;
     padding: 12px 6px;

@@ -34,16 +34,7 @@ export default function NewsFeed() {
         if(userData) {
             loadPostsData();
         }
-        console.log('i fire ');
-        return () => {
-            reset()
-        };
     }, [userData])
-
-
-    const reset = () => {
-        setPosts([]);
-    }
 
     function logoutHandler() {
         signOut(auth)
@@ -66,8 +57,6 @@ export default function NewsFeed() {
                 setPosts(postsData);
             })
     }
-
-    // console.log(posts);
 
     return (
         <>

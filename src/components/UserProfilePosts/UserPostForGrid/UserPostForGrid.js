@@ -9,9 +9,7 @@ export default function UserPostForGrid({
     //Modal functions
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => {
-        console.log('clicked');
-        setShow(true)};
+    const handleShow = () => setShow(true);
 
     const [showLikes, setShowLikes] = useState(false);
 

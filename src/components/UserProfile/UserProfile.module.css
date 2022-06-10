@@ -142,6 +142,11 @@
     font-size: 12px;
     font-weight: 500;
     color: gray;
+    cursor: pointer;
+}
+
+.contentNavigatorDiv > span:hover{
+    color: rgb(85, 85, 85);
 }
 
 .contentNavigatorDiv > span > i {
