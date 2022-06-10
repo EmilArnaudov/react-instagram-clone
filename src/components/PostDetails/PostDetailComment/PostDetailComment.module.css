@@ -12,6 +12,10 @@
     position: relative;
 }
 
+.profilePicContainerModal {
+    width: 10%;
+}
+
 .profilePic {
     width: 32px;
     height: 32px;
@@ -21,6 +25,14 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.profilePicModal {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
 }
 
 .location {

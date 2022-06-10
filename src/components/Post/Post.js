@@ -1,9 +1,10 @@
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-
+import Modal from 'react-bootstrap/Modal';
 import { CurrentUserContext, FirebaseContext } from '../../App';
 import styles from './Post.module.css';
 import { addCommentToPost, updatePostLikes } from '../../services/postService';
+import PostDetails from '../PostDetails/PostDetails';
 
 export default function Post({
     postData
@@ -13,6 +14,11 @@ export default function Post({
     const [post, setPost] = useState(postData);
     const [comment, setComment] = useState('');
     const [postLiked, setPostLiked] = useState(post.likes.includes(userData.username));
+
+    //Modal functions
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const likePost = () => {
         if (!postLiked) {
@@ -51,6 +57,7 @@ export default function Post({
     }
 
     return (
+        <>
         <div className={styles.container}>
             <div className={styles.header}>
                 <div className={styles.profilePicContainer}>
@@ -61,7 +68,7 @@ export default function Post({
                     <p className={styles.location}>{post.location}</p>
                 </div>
                 <div className={styles.ellipsisContainer}>
-                    <Link to={'/p/' + post.id}><i className="fa-solid fa-ellipsis"></i></Link>
+                    <span onClick={handleShow}><i className="fa-solid fa-ellipsis"></i></span>
                 </div>
             </div>
             <div className={styles.imageContainer}>
@@ -131,5 +138,17 @@ export default function Post({
                     </form>
                 </div>
         </div>
+
+
+        <Modal
+        contentClassName={styles.mainModal}
+        show={show} 
+        onHide={handleClose}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        >
+            <PostDetails></PostDetails>
+        </Modal>
+        </>
     )
 }

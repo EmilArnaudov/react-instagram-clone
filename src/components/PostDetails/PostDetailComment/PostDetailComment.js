@@ -1,7 +1,8 @@
 import styles from './PostDetailComment.module.css';
 
 export default function PostDetailComment({
-    comment
+    comment,
+    modal,
 }) {
 
     if (!comment) {
@@ -12,8 +13,8 @@ export default function PostDetailComment({
 
         <li className={styles.commentContainer}>
             <div className={styles.header}>
-                <div className={styles.profilePicContainer}>
-                    <img className={styles.profilePic} src={comment.commentOwnerProfilePic.length > 0 ? comment.commentOwnerProfilePic : "/images/defaultPic.jpg"} alt="" />
+                <div className={modal ? styles.profilePicContainerModal : styles.styles.profilePicContainer}>
+                    <img className={modal ? styles.profilePicModal : styles.profilePic} src={comment.commentOwnerProfilePic.length > 0 ? comment.commentOwnerProfilePic : "/images/defaultPic.jpg"} alt="" />
                 </div>
                 <div className={styles.detailsWrapper}>
                     <div className={styles.userDetails}>

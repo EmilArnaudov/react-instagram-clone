@@ -15,7 +15,6 @@ export default function UserProfilePosts({
         loadPostsById(db, postsIds)
             .then(postsData => {
                 setPosts(postsData);
-                console.log(postsData);
             })
     }, []);
     

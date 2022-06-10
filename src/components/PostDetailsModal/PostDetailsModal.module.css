@@ -1,0 +1,245 @@
+.mainModal {
+    min-height: 75vh;
+    width: 88%;
+    max-width: 1160px;
+
+    margin: 40px auto 40px auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body {
+    padding: 0;
+}
+
+.container {
+    background-color: #fafafa;
+    width: 100%;
+}
+
+.main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.innerWrapper {
+    width: 100%;
+}
+
+.postContent {
+    width: 100%;
+    background-color: #fff;
+
+    border: 1px solid #e8e8e8;
+    display: flex;
+}
+
+.postImageContainer {
+    width: 60%;
+    height: calc(100vh - 98px);
+}
+
+.postImageContainer > img {
+    width: 100%;
+    height: calc(100vh - 98px);
+    object-fit: cover;
+    object-position: center;
+}
+
+.commentSection {
+    width: 40%;
+}
+
+.header {
+    display: flex;
+    padding: 12px;
+    gap: 5px;
+    border-bottom: 1px solid #e8e8e8;
+    height: 71px;
+}
+
+.profilePicContainer {
+    width: 10%;
+    position: relative;
+}
+
+.profilePic {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+.userDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: calc(100% - 50px);
+}
+
+.location {
+    font-size: 12px;
+    color: gray;
+}
+
+.username {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.comments {
+    height: 405px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.commentsList {
+    padding: 16px;
+}
+
+.actions {
+    display: flex;
+    gap: 24px;
+    padding: 12px 16px; 
+}
+
+.actions > span {
+    text-decoration: none;
+    color: gray;
+    font-size: 24px;
+    transition: all 150ms ease-in;
+}
+
+.actions > .likeButton:hover {
+    color: rgb(228, 94, 94);
+    cursor: pointer;
+}
+
+.actions > .likedButton {
+    text-decoration: none;
+    color: rgb(228, 94, 94);
+    font-size: 24px;
+    transition: all 150ms ease-in;
+}
+
+.actions > .likedButton:hover {
+    cursor: pointer;
+}
+
+.actions > span:hover {
+    color: rgb(52, 52, 52);
+    cursor: pointer;
+}
+
+.likedBy {
+    padding: 0px 16px;
+    padding-bottom: 8px;
+}
+
+.likedBy > p {
+    font-size: 14px;
+}
+
+.likedBy > p > a {
+    text-decoration: none;
+    color: #2c2c2c;
+    font-weight: 600;
+}
+
+.likedBy > p > span {
+    color: #2c2c2c;
+    font-weight: 600;
+}
+
+.bold {
+    color: #2c2c2c;
+    font-weight: 600;
+}
+
+.date {
+    padding: 0px 16px;
+    padding-bottom: 10px;
+}
+
+.dateText {
+    font-size: 9px;
+    color: gray;
+}
+
+.commentInputContainer {
+    display: flex;
+    position: relative;
+    padding: 12px 6px;
+    height: 48px;
+    border-top: 1px solid lightgray;
+    margin-top: 12px;
+}
+
+.inputForm {
+    display: flex;
+    align-items: center;
+}
+
+.inputForm  input{
+    font-size: 13px;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.inputForm  input:focus {
+    border: none;
+    outline: none;
+}
+
+.inputFieldContainer {
+    width: 366px;
+}
+
+.smileyContainer {
+    padding: 8px 8px 8px 0px
+}
+
+.smileyContainer > i {
+    font-size: 22px;
+    color: lightgray;
+}
+
+.inputForm button {
+    background-color: transparent;
+    border: none;
+    color: #4bb5fc;
+    font-weight: 600;
+}
+
+.actions > span {
+    text-decoration: none;
+    color: gray;
+    font-size: 24px;
+    transition: all 150ms ease-in;
+}
+
+.actions > .likeButton:hover {
+    color: rgb(228, 94, 94);
+    cursor: pointer;
+}
+
+.actions > .likedButton {
+    text-decoration: none;
+    color: rgb(228, 94, 94);
+    font-size: 24px;
+    transition: all 150ms ease-in;
+}
+
+.actions > .likedButton:hover {
+    cursor: pointer;
+}
+
+.actions > span:hover {
+    color: rgb(52, 52, 52);
+    cursor: pointer;
+}

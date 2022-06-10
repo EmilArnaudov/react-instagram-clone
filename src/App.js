@@ -13,6 +13,7 @@ import { getStorage } from 'firebase/storage'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { useState, createContext, useEffect } from 'react';
+import PostDetailsModal from './components/PostDetailsModal/PostDetailsModal';
 
 
 const app = initializeApp(firebaseConfig);
@@ -53,6 +54,7 @@ function App() {
                 <Route path='/sign-up' element={<SignUp/>}></Route>
                 <Route path='/:username' element={<UserProfile/>}></Route>
                 <Route path='/p/:postId'element={<PostDetails/>} ></Route>
+                <Route path='/pm/:postId'element={<PostDetailsModal/>} ></Route>
               </Routes>
           </Router>
         </CurrentUserContext.Provider>
