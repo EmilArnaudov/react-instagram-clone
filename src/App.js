@@ -40,7 +40,7 @@ function App() {
 
       return unsub;
     }
-  }, [user])
+  }, [user, userData])
 
   return (
     <div className="App">

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import { CurrentUserContext, FirebaseContext } from '../../App';
-import { loadPostById } from '../../services/postService';
+import { addCommentToPost, loadPostById, updatePostLikes } from '../../services/postService';
 import styles from './PostDetails.module.css';
 import Navigation from '../Navigation/Navigation';
 import PostDetailComment from './PostDetailComment/PostDetailComment';
@@ -13,19 +13,30 @@ export default function PostDetails() {
     const { userData } = useContext(CurrentUserContext)
     const { postId } = useParams();
 
+    const [comment, setComment] = useState('');
+    const [comments, setComments] = useState([])
+    const [postLiked, setPostLiked] = useState(null);
     const [post, setPost] = useState(null);
 
     useEffect(() => {
         loadPostById(db, postId)
             .then((postData) => {
                 setPost(postData);
+                setComments(postData.comments)
             })
     }, [])
 
-    const [comment, setComment] = useState('');
-    const postLiked = false;
     const likePost = () => {
+        if (!postLiked) {
+            updatePostLikes(db, userData.username, post.id)
 
+            let newLikes = post.likes;
+            newLikes.push(userData.username);
+            setPost((oldState) => {
+                return {...oldState, likes: newLikes};
+            })
+            setPostLiked(true);
+        }
     }
 
     const onChangeCommentHandler = (e) => {
@@ -33,11 +44,30 @@ export default function PostDetails() {
     }
 
     const addComment = (e) => {
+        e.preventDefault();
 
+        const commentModel = {
+            commentOwner: userData.username,
+            commentOwnerProfilePic: userData.profilePic,
+            commentContent: comment,
+        }
+
+        addCommentToPost(db, commentModel, post.id);
+
+        let newComments = post.comments;
+        newComments.push(commentModel);
+        setPost((oldState) => {
+            return {...oldState, comments: newComments};
+        })
+        setComment('');
     }
 
-    if (!post) {
+    if (!post || !userData) {
         return;
+    }
+
+    if (postLiked === null) {
+        setPostLiked(post.likes.includes(userData.username));
     }
 
     return (
@@ -66,15 +96,12 @@ export default function PostDetails() {
 
                                 <div className={styles.comments}>
                                     <ul className={styles.commentsList}>
-                                        <PostDetailComment post={post}></PostDetailComment>
-                                        <PostDetailComment post={post}></PostDetailComment>
-                                        <PostDetailComment post={post}></PostDetailComment>
-                                        <PostDetailComment post={post}></PostDetailComment>
+                                        {comments.map(comment => <PostDetailComment key={Math.random()} comment={comment}></PostDetailComment>)}
                                     </ul>
                                 </div>
 
                                 <div className={styles.actions}>
-                                    <span className={postLiked ? styles.likedButton : styles.likeButton} onClick={likePost}><i className="fa-solid fa-heart"></i></span>
+                                    <span className={post.likes.includes(userData.username) ? styles.likedButton : styles.likeButton} onClick={likePost}><i className="fa-solid fa-heart"></i></span>
                                     <span><i className="fa-solid fa-comment"></i></span>
                                 </div>
 

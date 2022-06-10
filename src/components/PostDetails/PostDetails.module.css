@@ -218,3 +218,31 @@
     color: #4bb5fc;
     font-weight: 600;
 }
+
+.actions > span {
+    text-decoration: none;
+    color: gray;
+    font-size: 24px;
+    transition: all 150ms ease-in;
+}
+
+.actions > .likeButton:hover {
+    color: rgb(228, 94, 94);
+    cursor: pointer;
+}
+
+.actions > .likedButton {
+    text-decoration: none;
+    color: rgb(228, 94, 94);
+    font-size: 24px;
+    transition: all 150ms ease-in;
+}
+
+.actions > .likedButton:hover {
+    cursor: pointer;
+}
+
+.actions > span:hover {
+    color: rgb(52, 52, 52);
+    cursor: pointer;
+}

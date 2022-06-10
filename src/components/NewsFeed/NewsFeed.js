@@ -22,6 +22,8 @@ export default function NewsFeed() {
     const [loadMore, setLoadMore] = useState(true);
     const [initialLoad, setInitialLoad] = useState(false);
 
+
+
     useEffect(() => {
         if (!user) {
             navigate('/sign-in');
@@ -64,8 +66,8 @@ export default function NewsFeed() {
     function loadPostsData() {
         loadNewsFeedPosts(db, userData.email, posts.length)
             .then(postsData => {
-                if (postsData.length < posts.length + 5) {
-                    setLoadMore(false);
+                if (posts.length > 0 && posts.length < 5) {
+                    return;
                 }
                 setPosts(oldState => oldState.concat(postsData));
             })
