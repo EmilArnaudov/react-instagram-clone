@@ -12,6 +12,7 @@ export async function addNewUserToDatabase(db, data) {
         ownPosts: [],
         savedPosts: [],
         taggedPosts: [],
+        chatContacts: [],
         profilePic: '',
     }
 
@@ -53,4 +54,27 @@ export async function uploadImageAndGetDownloadUrl(storage, file) {
     const snapshot = await uploadBytes(fileRef, file);
     let url = await getDownloadURL(snapshot.ref);
     return url;
+}
+
+export function constructChatID(user, otherUser) {
+    let firstLetter = user.email[0];
+    let secondLetter = otherUser.email[0]
+
+    let sum = 0;
+    let idString;
+    if (firstLetter.charCodeAt(0) < secondLetter.charCodeAt(0)) {
+        idString = user.email + otherUser.email;
+    } else {
+        idString = otherUser.email + user.email; 
+    }
+
+
+    for (let i = 0; i < idString.length; i++) {
+        sum += idString.charCodeAt(i);
+        sum *= 2
+        sum -= 30
+    }
+
+    return String(sum);
+
 }

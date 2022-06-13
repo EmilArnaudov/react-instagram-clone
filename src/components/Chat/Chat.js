@@ -2,10 +2,36 @@ import styles from './Chat.module.css';
 import Navigation from '../Navigation/Navigation';
 import ChatContact from './ChatContact/ChatContact';
 import ChatMessage from './ChatMessage/ChatMessage';
+import { useContext, useEffect, useState } from 'react';
+import { CurrentUserContext, FirebaseContext } from '../../App';
+import { loadAllChats } from '../../services/chatService';
 
 export default function Chat({
-    userData
+
 }) {
+    const { db } = useContext(FirebaseContext);
+    const { userData } = useContext(CurrentUserContext);
+    const [chats, setChats] = useState([]);
+
+
+    useEffect(() => {
+        if (userData) {
+
+            loadAllChats(db, userData)
+                .then(allChats => {
+                    setChats(allChats);        
+                }) 
+            
+        }
+    }, [userData])
+
+
+    if (!userData) {
+        return;
+    }
+
+    console.log(chats[0]);
+
     return (
 
         <>
@@ -15,14 +41,10 @@ export default function Chat({
                 <div className={styles.chat}>
                     <div className={styles.contacts}>
                         <div className={styles.contactsHeader}>
-                            <span className={styles.username}>Username</span>
+                            <span className={styles.username}>{userData.username}</span>
                         </div>
                         <div className={styles.contactsBody}>
-                        <ChatContact></ChatContact>
-                        <ChatContact></ChatContact>
-                        <ChatContact></ChatContact>
-                        <ChatContact></ChatContact>
-                        <ChatContact></ChatContact>
+                            {chats.map((chat) => <ChatContact key={Math.random()} chat={chat} ></ChatContact>)}
                         </div>
                     </div>
                     <div className={styles.content}>

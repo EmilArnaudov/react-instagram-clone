@@ -7,14 +7,17 @@ import useLoadProfileData from '../../hooks/useLoadProfileData';
 import { useContext, useState } from 'react';
 import { CurrentUserContext } from '../../App';
 import { FirebaseContext } from '../../App';
-import { updateUserProfilePic } from '../../services/firestoreService'
+import { constructChatID, updateUserProfilePic } from '../../services/firestoreService'
 import { uploadImageAndGetDownloadUrl } from '../../services/firestoreService'
 import { followUser } from '../../services/userService';
 import UserProfilePosts from '../UserProfilePosts/UserProfilePosts';
 import UserProfileNoSaved from '../UserProfileNoSaved/UserProfileNoSaved';
 import UserProfileNoTagged from '../UserProfileNoTagged/UserProfileNoTagged';
+import { createChat, doesChatExist } from '../../services/chatService';
+import { useNavigate } from 'react-router-dom';
 
 export default function UserProfile() {
+    const navigate = useNavigate();
     const { userData } = useContext(CurrentUserContext);
     const { db, storage } = useContext(FirebaseContext)
 
@@ -49,6 +52,20 @@ export default function UserProfile() {
         followUser(db, userData, visitedUserData);
     }
 
+    async function messageUser() {
+        const chatExists = await doesChatExist(db, userData, visitedUserData);
+
+        if (chatExists) {
+            navigate('/messages/' + constructChatID(userData, visitedUserData));
+        } else {
+            createChat(db, userData, visitedUserData)
+                .then(() => {
+                    navigate('/messages/' + constructChatID(userData, visitedUserData));
+                })
+
+        }
+    }
+
     return (
          <section className={styles.section}>
             <Navigation></Navigation>
@@ -75,7 +92,7 @@ export default function UserProfile() {
                                     <label  htmlFor="profilePic">
                                         <img className={styles.profilePicNotOwner}
                                          src={visitedUserData.profilePic.length > 0 ? visitedUserData.profilePic : "/images/defaultPic.jpg"}
-                                          alt="" />
+                                          alt="profile" />
                                     </label>
                                 </div>
                             </div>
@@ -87,7 +104,7 @@ export default function UserProfile() {
                                     {isOwnProfile 
                                     ? <button  className={styles.editProfileBtn}>Edit Profile</button> 
                                     : (visitedUserData.followers.includes(userData.email) 
-                                        ? <button  className={styles.editProfileBtn}>Message</button>
+                                        ? <button onClick={messageUser} className={styles.editProfileBtn}>Message</button>
                                         : <button onClick={followButtonHandler} className={styles.followBtn}>Follow</button>) 
                                      }
 

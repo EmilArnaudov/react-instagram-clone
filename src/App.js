@@ -54,9 +54,10 @@ function App() {
                 <Route path='/sign-in' element={<SignIn/>}></Route>
                 <Route path='/sign-up' element={<SignUp/>}></Route>
                 <Route path='/messages' element={<Chat/>}></Route>
+                <Route path='/messages/:chatID' element={<Chat/>}></Route>
                 <Route path='/:username' element={<UserProfile/>}></Route>
                 <Route path='/p/:postId'element={<PostDetails/>} ></Route>
-                <Route path='/pm/:postId'element={<PostDetailsModal/>} ></Route>
+
               </Routes>
           </Router>
         </CurrentUserContext.Provider>
