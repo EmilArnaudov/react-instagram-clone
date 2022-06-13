@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+}
+
+.isOwner {
+    justify-content: right;
+}
+
+.message {
+    min-height: 44px;
+    padding: 16px;
+    background-color: #efefef;
+    border-radius: 16px;
+    width: fit-content;
+    max-width: 45%;
+}
+
+.messageContent {
+    font-size: 13px;
+    line-height: 20px;
+    display: inline;
+}
