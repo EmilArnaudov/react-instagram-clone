@@ -12,6 +12,7 @@ import { uploadImageAndGetDownloadUrl } from '../../services/firestoreService'
 import { followUser } from '../../services/userService';
 import UserProfilePosts from '../UserProfilePosts/UserProfilePosts';
 import UserProfileNoSaved from '../UserProfileNoSaved/UserProfileNoSaved';
+import UserProfileNoTagged from '../UserProfileNoTagged/UserProfileNoTagged';
 
 export default function UserProfile() {
     const { userData } = useContext(CurrentUserContext);
@@ -123,7 +124,11 @@ export default function UserProfile() {
                     {(visitedUserData.ownPosts.length > 0 && content === 'posts') ? <UserProfilePosts postsIds={visitedUserData.ownPosts}/> : ''}
 
                     {(visitedUserData.savedPosts.length === 0 && content === 'saved') ? <UserProfileNoSaved ></UserProfileNoSaved> : ''}
-                    {(visitedUserData.savedPosts.length > 0 && content === 'saved') ? <UserProfilePosts postsIds={visitedUserData.ownPosts}/> : ''}
+                    {(visitedUserData.savedPosts.length > 0 && content === 'saved') ? <UserProfilePosts postsIds={visitedUserData.savedPosts}/> : ''}
+
+                    
+                    {(visitedUserData.taggedPosts.length === 0 && content === 'tagged') ? <UserProfileNoTagged ></UserProfileNoTagged> : ''}
+                    {(visitedUserData.taggedPosts.length > 0 && content === 'tagged') ? <UserProfilePosts postsIds={visitedUserData.taggedPosts}/> : ''}
                         
                 </div>
             </main>

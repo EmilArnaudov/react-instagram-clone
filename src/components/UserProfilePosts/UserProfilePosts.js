@@ -8,6 +8,7 @@ import { FirebaseContext } from '../../App';
 export default function UserProfilePosts({
     postsIds
 }) {
+    console.log(postsIds);
     const { db } = useContext(FirebaseContext);
     const [posts, setPosts] = useState(null);
 

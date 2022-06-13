@@ -78,7 +78,7 @@ function getPostDate() {
         ];
     
     let month = monthNames[date.getMonth()].toUpperCase();
-    let day = date.getDay().toString();
+    let day = date.getUTCDate().toString();
 
     if (day.length === 1) {
         day = `0${day}`;

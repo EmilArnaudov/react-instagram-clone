@@ -48,6 +48,10 @@ export default function NewsFeed() {
     }
 
     function loadPostsData() {
+        if (userData.email !== user.email) {
+            return;
+        }
+
         loadNewsFeedPosts(db, userData.email, posts.length)
             .then(postsData => {
                 if (postsData.length < 5) {
