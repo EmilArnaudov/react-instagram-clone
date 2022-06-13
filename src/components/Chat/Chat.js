@@ -30,7 +30,7 @@ export default function Chat({
         return;
     }
 
-    console.log(chats[0]);
+    // console.log(chats[0]);
 
     return (
 

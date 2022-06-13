@@ -60,20 +60,45 @@ export function constructChatID(user, otherUser) {
     let firstLetter = user.email[0];
     let secondLetter = otherUser.email[0]
 
+    console.log(user, otherUser);
+
     let sum = 0;
     let idString;
+
+
+
     if (firstLetter.charCodeAt(0) < secondLetter.charCodeAt(0)) {
         idString = user.email + otherUser.email;
-    } else {
+    } else if (firstLetter.charCodeAt(0) > secondLetter.charCodeAt(0)){
         idString = otherUser.email + user.email; 
+    } else {
+        let i = 0;
+        while (true) {
+            firstLetter = user.email[i];
+            secondLetter = otherUser.email[i];
+
+            if (firstLetter.charCodeAt(0) < secondLetter.charCodeAt(0)) {
+                idString = user.email + otherUser.email;
+                break;
+            } else if (firstLetter.charCodeAt(0) > secondLetter.charCodeAt(0)){
+                idString = otherUser.email + user.email; 
+                break;
+            } else {
+                i++;
+            }
+            
+        }
     }
 
+    
 
     for (let i = 0; i < idString.length; i++) {
         sum += idString.charCodeAt(i);
         sum *= 2
         sum -= 30
     }
+
+    console.log(user.email, otherUser.email, sum);
 
     return String(sum);
 

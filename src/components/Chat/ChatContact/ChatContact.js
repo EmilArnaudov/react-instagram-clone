@@ -10,7 +10,7 @@ export default function ChatContact({
     const [contactData, setContactData] = useState(null);
 
     useEffect(() => {
-        if (userData) {
+        if (userData && chat) {
             let contData = userData.username === chat.user.username ? chat.otherUser : chat.user;
             setContactData(contData);
         }

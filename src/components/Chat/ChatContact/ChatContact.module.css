@@ -20,7 +20,8 @@
 }
 
 .imageContainer > img {
-    width: 100%;
+    height: 56px;
+    width: 56px;
     object-fit: cover;
     object-position: center;
     border-radius: 50%;
