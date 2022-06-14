@@ -38,10 +38,10 @@ function App() {
   useEffect(() => {
     if (user && (!userData || user.email !== userData.email)) {
       const unsub = onSnapshot(doc(db, "users", user.email), (doc) => {
+        console.log('UPDATED USER');
         setUserData(doc.data())
       });
 
-      return unsub;
     }
   }, [user, userData])
 

@@ -11,7 +11,7 @@ export async function followUser(db, currentUser, followedUser) {
 
 export async function updateUserData(db, email, fullName, description, phoneNumber, gender) {
     const docRef = doc(db, 'users', email);
-    updateDoc(docRef, {fullName: fullName, description: description, phoneNumber: phoneNumber, gender: gender});
+    await updateDoc(docRef, {fullName: fullName, description: description, phoneNumber: phoneNumber, gender: gender});
 }
 
 export async function updateUserPosts(db, postId, username) {

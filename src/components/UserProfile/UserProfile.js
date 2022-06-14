@@ -122,7 +122,7 @@ export default function UserProfile() {
                                     <p className={styles.bold}>{visitedUserData.fullName}</p>
                                 </div>
                                 <div className={styles.description}>
-                                    <p>{visitedUserData.description.join('\n')}</p>
+                                    <p>{visitedUserData.description.length > 0 ? visitedUserData.description.join('\n') : ''}</p>
                                 </div>
                             </div>
                         </div>
