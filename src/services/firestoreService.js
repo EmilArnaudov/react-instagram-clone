@@ -60,12 +60,8 @@ export function constructChatID(user, otherUser) {
     let firstLetter = user.email[0];
     let secondLetter = otherUser.email[0]
 
-    console.log(user, otherUser);
-
     let sum = 0;
     let idString;
-
-
 
     if (firstLetter.charCodeAt(0) < secondLetter.charCodeAt(0)) {
         idString = user.email + otherUser.email;
@@ -97,8 +93,6 @@ export function constructChatID(user, otherUser) {
         sum *= 2
         sum -= 30
     }
-
-    console.log(user.email, otherUser.email, sum);
 
     return String(sum);
 

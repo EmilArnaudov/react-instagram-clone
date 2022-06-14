@@ -37,7 +37,7 @@ export default function Navigation({
                             <Link className={styles.link} to='/'><i className="fa-solid fa-house"></i></Link>
                         </div>
                         <div className={styles.navMenuIconDiv}>
-                            <Link className={styles.link} to='/messages'><i className="fa-solid fa-paper-plane"></i></Link>
+                            <Link className={styles.link} to='/messages/inbox'><i className="fa-solid fa-paper-plane"></i></Link>
                         </div>
                         <div className={styles.navMenuIconDiv}>
                             <span to='/' onClick={handleShow} className={styles.link}><i className="fa-solid fa-circle-plus"></i></span>

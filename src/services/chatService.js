@@ -37,6 +37,17 @@ export async function loadAllChats(db, user) {
     return chats;
 }
 
+export async function createChatMessage(db, chatID, message, owner) {
+    const messageModel = {
+        owner: owner.username,
+        content: message,
+        time: Date.now(),
+    }
+
+    const docRef = doc(db, 'chats', chatID);
+    updateDoc(docRef, {messages: arrayUnion(messageModel)})
+}
+
 function updateUserChatContacts(db, user, otherUser) {
     const docRef = doc(db, 'users', user.email);
 

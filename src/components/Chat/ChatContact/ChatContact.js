@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../../App';
 import styles from './ChatContact.module.css';
 
 export default function ChatContact({
-    chat
+    chat,
 }) {
-
+    const navigate = useNavigate();
     const { userData } = useContext(CurrentUserContext);
     const [contactData, setContactData] = useState(null);
 
@@ -20,9 +21,12 @@ export default function ChatContact({
         return;
     }
 
+    const clickHandler = () => {
+        navigate('/messages/' + chat.id)
+    }
 
     return (
-        <div className={styles.container}>
+        <div onClick={clickHandler} className={styles.container}>
             <div className={styles.innerContainer}>
                 <div className={styles.imageContainer}>
                     <img src={contactData.profilePic.length > 0 ? contactData.profilePic : "/images/defaultPic.jpg"} alt="user" />
@@ -31,7 +35,7 @@ export default function ChatContact({
                     <span>{contactData.username}</span>
                     <div className={styles.details}>
                         <span className={styles.lastMessageContainer}>
-                            <span>{chat.messages[chat.messages.length - 1]}</span>
+                            <span>{chat.messages[chat.messages.length - 1].content}</span>
                         </span>
                         <span>.</span>
                         <span>1w</span>

@@ -1,9 +1,12 @@
-.container {
+.owner {
     display: flex;
+    justify-content: right;
+    margin-bottom: 7px;
 }
 
-.isOwner {
-    justify-content: right;
+.guest {
+    display: flex;
+    margin-bottom: 7px;
 }
 
 .message {
@@ -19,4 +22,6 @@
     font-size: 13px;
     line-height: 20px;
     display: inline;
+    max-width: 45%;
+    overflow-wrap: break-word;
 }
