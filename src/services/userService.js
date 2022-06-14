@@ -1,4 +1,4 @@
-import {doc, updateDoc, arrayUnion, collection, addDoc} from 'firebase/firestore'
+import {doc, updateDoc, arrayUnion, collection, addDoc, arrayRemove} from 'firebase/firestore'
 import { getUserDataWithUsername } from './firestoreService'
 
 export async function followUser(db, currentUser, followedUser) {
@@ -6,6 +6,14 @@ export async function followUser(db, currentUser, followedUser) {
     const docReffollowedUser = doc(db, "users", followedUser.email);
     await Promise.all([updateDoc(docRefcurrentUser, {following: arrayUnion(followedUser.email)}),
                         updateDoc(docReffollowedUser, {followers: arrayUnion(currentUser.email)})])
+
+}
+
+export async function unFollowUser(db, currentUser, followedUser) {
+    const docRefcurrentUser = doc(db, "users", currentUser.email);
+    const docReffollowedUser = doc(db, "users", followedUser.email);
+    await Promise.all([updateDoc(docRefcurrentUser, {following: arrayRemove(followedUser.email)}),
+                        updateDoc(docReffollowedUser, {followers: arrayRemove(currentUser.email)})])
 
 }
 
@@ -35,4 +43,19 @@ export async function updatePeopleNewsFeeds(db, postId, username) {
         const collectionRef = collection(db, 'newsFeeds', user, 'posts');
         await addDoc(collectionRef, {postId, time: Date.now()})
     }
+}
+
+export async function loadSuggestedUsers(db, userData) {
+    let followers = userData.followers;
+    let following = userData.following;
+    let suggestions = [];
+
+    followers.forEach((followed) => {
+        if (!following.includes(followed)) {
+            suggestions.push(followed);
+        }
+    })
+
+
+
 }

@@ -9,7 +9,7 @@ import { CurrentUserContext } from '../../App';
 import { FirebaseContext } from '../../App';
 import { constructChatID, updateUserProfilePic } from '../../services/firestoreService'
 import { uploadImageAndGetDownloadUrl } from '../../services/firestoreService'
-import { followUser } from '../../services/userService';
+import { followUser, unFollowUser } from '../../services/userService';
 import UserProfilePosts from '../UserProfilePosts/UserProfilePosts';
 import UserProfileNoSaved from '../UserProfileNoSaved/UserProfileNoSaved';
 import UserProfileNoTagged from '../UserProfileNoTagged/UserProfileNoTagged';
@@ -54,6 +54,10 @@ export default function UserProfile() {
 
     function followButtonHandler() {
         followUser(db, userData, visitedUserData);
+    }
+
+    function unFollowButtonHandler() {
+        unFollowUser(db, userData, visitedUserData);
     }
 
     async function messageUser() {
@@ -108,7 +112,11 @@ export default function UserProfile() {
                                     {isOwnProfile 
                                     ? <button onClick={editProfile}  className={styles.editProfileBtn}>Edit Profile</button> 
                                     : (visitedUserData.followers.includes(userData.email) 
-                                        ? <button onClick={messageUser} className={styles.editProfileBtn}>Message</button>
+                                        ? 
+                                        <>
+                                        <button onClick={unFollowButtonHandler} className={styles.editProfileBtn}>Unfollow</button>
+                                        <button onClick={messageUser} className={styles.editProfileBtn}>Message</button>
+                                        </>
                                         : <button onClick={followButtonHandler} className={styles.followBtn}>Follow</button>) 
                                      }
 

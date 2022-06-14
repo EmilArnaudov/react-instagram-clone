@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PostDetailsModal from '../PostDetailsModal/PostDetailsModal';
 import { CurrentUserContext, FirebaseContext } from '../../App';
 import styles from './Post.module.css';
-import { addCommentToPost, updatePostLikes } from '../../services/postService';
+import { addCommentToPost, updatePostLikes, unlikePost } from '../../services/postService';
 
 
 export default function Post({
@@ -30,6 +30,17 @@ export default function Post({
                 return {...oldState, likes: newLikes};
             })
             setPostLiked(true);
+        } else {
+            unlikePost(db, userData.username, post.id)
+
+            console.log(post.likes);
+            let newLikes = post.likes.filter(username => username !== userData.username);
+            console.log(newLikes);
+
+            setPost((oldState) => {
+                return {...oldState, likes: newLikes};
+            })
+            setPostLiked(false);
         }
     }
 

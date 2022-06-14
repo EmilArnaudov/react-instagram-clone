@@ -18,7 +18,7 @@ export default function PostDetailComment({
                 </div>
                 <div className={styles.detailsWrapper}>
                     <div className={styles.userDetails}>
-                        <span className={styles.username}>{comment.commentOwnerUsername}</span>
+                        <span className={styles.username}>{comment.commentOwner}</span>
                         <span className={styles.commentText}>{comment.commentContent}</span>
                     </div>
                     <div className={styles.commentLeftAgo}>
