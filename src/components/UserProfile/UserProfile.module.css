@@ -172,3 +172,9 @@
     padding-bottom: 48px;
     background-color: #fafafa;
 }
+
+.description {
+    white-space: pre;
+    line-height: 20px;
+    font-size: 14px;
+}

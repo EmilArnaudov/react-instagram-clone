@@ -43,6 +43,10 @@ export default function UserProfile() {
         setContent('tagged');
     }
 
+    const editProfile = () => {
+        navigate('/profile/edit');
+    }
+
     async function imageUploadHandler(e) {
         let url = await uploadImageAndGetDownloadUrl(storage, e.target.files[0]);
         await updateUserProfilePic(db, userData.email, url)
@@ -102,7 +106,7 @@ export default function UserProfile() {
                                 <div className={styles.usernameAndAction}>
                                     <span className={styles.username}>{visitedUserData.username}</span>
                                     {isOwnProfile 
-                                    ? <button  className={styles.editProfileBtn}>Edit Profile</button> 
+                                    ? <button onClick={editProfile}  className={styles.editProfileBtn}>Edit Profile</button> 
                                     : (visitedUserData.followers.includes(userData.email) 
                                         ? <button onClick={messageUser} className={styles.editProfileBtn}>Message</button>
                                         : <button onClick={followButtonHandler} className={styles.followBtn}>Follow</button>) 
@@ -116,6 +120,9 @@ export default function UserProfile() {
                                 </div>
                                 <div className={styles.fullNameContainer}>
                                     <p className={styles.bold}>{visitedUserData.fullName}</p>
+                                </div>
+                                <div className={styles.description}>
+                                    <p>{visitedUserData.description.join('\n')}</p>
                                 </div>
                             </div>
                         </div>

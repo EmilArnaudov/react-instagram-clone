@@ -71,7 +71,11 @@ export default function Chat({
                             <span className={styles.username}>{userData.username}</span>
                         </div>
                         <div className={styles.contactsBody}>
-                            {chats.map((chat) => <ChatContact key={Math.random()} chat={chat} ></ChatContact>)}
+                            {chats.map((chat) => <ChatContact 
+                            key={Math.random()} 
+                            chat={(currentChat && chat.id === currentChat.id) ? currentChat : chat}
+                            isActive = {(currentChat && chat.id === currentChat.id) ? true : false}
+                            ></ChatContact>)}
                         </div>
                     </div>
                     <ChatMessages chat={currentChat} chatSelected={chatSelected}></ChatMessages>

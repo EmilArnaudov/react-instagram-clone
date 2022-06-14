@@ -15,6 +15,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { useState, createContext, useEffect } from 'react';
 import PostDetailsModal from './components/PostDetailsModal/PostDetailsModal';
 import Chat from './components/Chat/Chat';
+import EditProfile from './components/EditProfile/EditProfile';
 
 
 const app = initializeApp(firebaseConfig);
@@ -53,6 +54,7 @@ function App() {
                 <Route path='/' element={<NewsFeed/>}></Route>
                 <Route path='/sign-in' element={<SignIn/>}></Route>
                 <Route path='/sign-up' element={<SignUp/>}></Route>
+                <Route path='/profile/edit' element={<EditProfile/>}></Route>
                 <Route path='/messages/:chatID' element={<Chat/>}></Route>
                 <Route path='/:username' element={<UserProfile/>}></Route>
                 <Route path='/p/:postId'element={<PostDetails/>} ></Route>

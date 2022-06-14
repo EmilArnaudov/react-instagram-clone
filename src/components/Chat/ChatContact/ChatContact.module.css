@@ -41,7 +41,7 @@
     display: flex;
     flex: 0 0 auto;
     gap: 3px;
-    font-size: 12px;
+    font-size: 13px;
     color: #c1c1c1;
 }
 
@@ -53,6 +53,21 @@
     text-overflow: ellipsis;
 
     max-width: 190px;
+}
+
+.dotContainer {
+    width: 10px;
+    height: 10px;
+    position: relative;
+}
+
+.dot {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .active {
