@@ -42,6 +42,7 @@ export default function Chat({
         if (chatID !== 'inbox') {
             const unsub = onSnapshot(doc(db, "chats", chatID), (doc) => {
                 let data = doc.data();
+                data.messages = data.messages.reverse();
                 setCurrentChat(data);
                 setChatSelected(true);
             });

@@ -18,6 +18,16 @@
     max-width: 45%;
 }
 
+.messageGuest {
+    min-height: 44px;
+    padding: 16px;
+    border: 1px solid lightgray;
+    background-color: #fff;
+    border-radius: 16px;
+    width: fit-content;
+    max-width: 45%;
+}
+
 .messageContent {
     font-size: 13px;
     line-height: 20px;

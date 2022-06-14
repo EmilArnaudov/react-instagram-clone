@@ -11,12 +11,14 @@ export default function ChatMessage({
         return;
     }
 
-    const messageClasses = userData.username === chatMessage.owner ? ownerClasses : guestClasses
+    const isOwner = userData.username === chatMessage.owner
+
+    const messageClasses =  isOwner ? ownerClasses : guestClasses
 
 
     return (
-        <div className={guestClasses}>
-                <div className={styles.message}>
+        <div className={messageClasses}>
+                <div className={isOwner ? styles.message : styles.messageGuest}>
                     <div className={styles.messageContent}>
                         <p>{chatMessage.content}</p>
                     </div>

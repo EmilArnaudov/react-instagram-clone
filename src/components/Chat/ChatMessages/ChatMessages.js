@@ -9,6 +9,7 @@ export default function ChatMessages({
     chatSelected
 }) {
 
+    const [messagesReversed, setmessagesReversed] = useState(false);
 
     const {userData} = useContext(CurrentUserContext);
     const {db} = useContext(FirebaseContext);
