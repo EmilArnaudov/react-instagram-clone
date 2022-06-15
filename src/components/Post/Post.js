@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import PostDetailsModal from '../PostDetailsModal/PostDetailsModal';
 import { CurrentUserContext, FirebaseContext } from '../../App';
 import styles from './Post.module.css';
-import { addCommentToPost, updatePostLikes, unlikePost } from '../../services/postService';
+import { addCommentToPost, updatePostLikes, unlikePost, savePost } from '../../services/postService';
+import SavePostModal from './SavePostModal/SavePostModal';
 
 
 export default function Post({
@@ -19,6 +20,15 @@ export default function Post({
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    //SaveMenu
+    const [showSavePost, setShowSavePost] = useState(false);
+    const openSavePost = () => setShowSavePost(oldState => !oldState);
+
+    const savePostHandler = () => {
+        savePost(db, postData.id, userData.email)
+        openSavePost();
+    }
 
     const likePost = () => {
         if (!postLiked) {
@@ -79,8 +89,9 @@ export default function Post({
                     <p className={styles.location}>{post.location}</p>
                 </div>
                 <div className={styles.ellipsisContainer}>
-                    <span onClick={handleShow}><i className="fa-solid fa-ellipsis"></i></span>
+                    <span onClick={openSavePost}><i className="fa-solid fa-ellipsis"></i></span>
                 </div>
+                <SavePostModal savePostHandler={savePostHandler} isOwner={userData.username === post.ownerUsername} showSavePost={showSavePost}></SavePostModal>
             </div>
             <div className={styles.imageContainer}>
                 <img className={styles.image} src={post.imageUrl} alt="" />
@@ -118,13 +129,30 @@ export default function Post({
                 }
 
 
-                {post.comments.length > 0
+                {(post.comments.length > 0 && post.comments.length < 4)
                 ?
+                    <>
+                    {post.comments.map(comment =>
+                        <>
+                        {post.comments.map(comment =>                 
+                        <div className={styles.firstComment}>
+                            <span className={styles.bold}>{comment.commentOwner}</span>
+                            <p className={styles.lastCommentText}>{comment.commentContent}</p>
+                        </div>
+                        )}
+                        </>         
+
+                    )}
+                    </>
+                :
+                <>
+                {post.comments.length > 0 &&                 
                 <div className={styles.firstComment}>
                     <span className={styles.bold}>{post.comments[post.comments.length - 1].commentOwner}</span>
                     <p className={styles.lastCommentText}>{post.comments[post.comments.length - 1].commentContent}</p>
-                </div>
-                :''
+                </div>}
+                </>
+
                  }
 
 

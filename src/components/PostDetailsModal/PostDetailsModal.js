@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { CurrentUserContext, FirebaseContext } from '../../App';
 import { addCommentToPost, updatePostLikes } from '../../services/postService';
 import PostDetailComment from '../PostDetails/PostDetailComment/PostDetailComment';
+import SavePostModal from '../Post/SavePostModal/SavePostModal';
 
 export default function PostDetailsModal({
     show,
@@ -22,6 +23,9 @@ export default function PostDetailsModal({
     const [postLiked, setPostLiked] = useState(null);
     const [post, setPost] = useState(postData)
 
+    //SavePost
+    const [showSavePost, setShowSavePost] = useState(false);
+    const openSavePost = () => setShowSavePost(oldState => !oldState);
 
     const likePost = () => {
         if (!postLiked) {
@@ -94,6 +98,10 @@ export default function PostDetailsModal({
                                             <p className={styles.username}>{post.ownerUsername}</p>
                                             <p className={styles.location}>{post.location}</p>
                                         </div>
+                                        <div className={styles.ellipsisContainer}>
+                                            <span onClick={openSavePost}><i className="fa-solid fa-ellipsis"></i></span>
+                                        </div>
+                                        <SavePostModal isOwner={userData.username === post.ownerUsername} showSavePost={showSavePost}></SavePostModal>
                                     </div>
 
                                     <div className={styles.comments}>

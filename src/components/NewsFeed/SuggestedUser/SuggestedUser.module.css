@@ -9,7 +9,7 @@
     width: 10%;
 }
 
-.userPicContainer > img {
+.userPicContainer > a > img {
     width: 100%;
     object-fit: cover;
     object-position: center;
@@ -25,6 +25,10 @@
     color: #484848;
     font-weight: 600;
     font-size: 14px;
+}
+
+.link {
+    text-decoration: none;
 }
 
 .userDetails {
@@ -43,4 +47,5 @@
     font-size: 11px;
     letter-spacing: -0.2px;
     text-decoration: none;
+    cursor: pointer;
 }

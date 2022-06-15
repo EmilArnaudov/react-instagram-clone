@@ -2,6 +2,7 @@
     background-color: #ffffff;
     border: 1px solid #e8e8e8;
     border-radius: 8px;
+    position: relative;
 }
 
 .header {
@@ -51,7 +52,7 @@
     display: flex;
     align-items: center;
     justify-content: right;
-
+    cursor: pointer;
 
 }
 

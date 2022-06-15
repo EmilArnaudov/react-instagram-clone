@@ -1,4 +1,4 @@
-import {doc, addDoc, collection, getDoc, query, orderBy, getDocs, limit, updateDoc, arrayUnion, arrayRemove} from 'firebase/firestore';
+import {doc, addDoc, collection, getDoc, query, orderBy, getDocs, limit, updateDoc, arrayUnion, arrayRemove, deleteDoc} from 'firebase/firestore';
 import { updateTaggedPeoplePosts, updateUserPosts, updatePeopleNewsFeeds } from './userService';
 
 
@@ -71,6 +71,14 @@ export async function updatePostLikes(db, username, postId) {
 export async function unlikePost(db, username, postId) {
     const docRef = doc(db, 'posts', postId);
     return updateDoc(docRef, {likes: arrayRemove(username)});
+}
+
+export async function savePost(db, postId, email) {
+    const docRef = doc(db, "users", email);
+
+    updateDoc(docRef, {
+      savedPosts: arrayUnion(postId)
+    });
 }
 
 function getPostDate() {
