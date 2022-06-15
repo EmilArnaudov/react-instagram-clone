@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    padding: 12px;
+    gap: 16px;
+    margin: 8px 0px;
+}
+
+.container:hover {
+    cursor: pointer;
+    background-color: rgb(239, 239, 239);
+}
+
+.nounderline {
+    text-decoration: none;
+}
+
+.profilePicContainer {
+    width: 10%;
+}
+
+.profilePic {
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+.userDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: calc(100% - 50px);
+}
+
+.description {
+    font-size: 12px;
+    color: gray;
+}
+
+.username {
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    color: #2c2c2c;
+}

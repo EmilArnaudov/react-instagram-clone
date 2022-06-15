@@ -1,4 +1,4 @@
-import {doc, updateDoc, arrayUnion, collection, addDoc, arrayRemove} from 'firebase/firestore'
+import {doc, updateDoc, arrayUnion, collection, addDoc, arrayRemove, getDocs} from 'firebase/firestore'
 import { getUserDataWithUsername } from './firestoreService'
 
 export async function followUser(db, currentUser, followedUser) {
@@ -56,6 +56,19 @@ export async function loadSuggestedUsers(db, userData) {
         }
     })
 
+    return suggestions;
 
+}
 
+export async function searchUsersInDb(db, query) {
+    let result = [];
+    let docRef = collection(db, 'users');
+    let docSnap = await getDocs(docRef);
+    docSnap.forEach(doc => result.push(doc.data()));
+
+    return result.filter(
+        user => 
+        user.username.toLowerCase().includes(query.toLowerCase()) 
+        || user.email.toLowerCase().includes(query.toLowerCase())
+        || user.fullName.toLowerCase().includes(query.toLowerCase()));
 }

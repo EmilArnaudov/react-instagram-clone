@@ -1,18 +1,50 @@
 import styles from './Navigation.module.css';
-import { CurrentUserContext } from '../../App'
+import { CurrentUserContext, FirebaseContext } from '../../App'
 
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CreatePostModal from '../CreatePostModal/CreatePostModal';
+import SearchResults from './SearchResults/SearchResults';
+import { searchUsersInDb } from '../../services/userService';
+import { useCallback } from 'react';
+import debounce from 'lodash.debounce';
 
 export default function Navigation({
 }) {
-    const {userData} = useContext(CurrentUserContext)
+    const {userData} = useContext(CurrentUserContext);
+    const {db} = useContext(FirebaseContext);
+
 
     //Modal functions
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const debouncedSearchUsers = useCallback(debounce((query) => {
+        searchUsers(query);
+    }, 500), [])
+
+    const [searchBarValue, setsearchBarValue] = useState('');
+    const onSearchChangeHandler = (e) => {
+        setsearchBarValue(e.target.value);
+        debouncedSearchUsers(e.target.value)
+    } 
+
+    //Search result functions
+    const [searchResults, setsearchResults] = useState([]);
+    const [showSearchResults, setshowSearchResults] = useState(false);
+    const showSearch = (e) => {setshowSearchResults(true)};
+    const hideSearch = () => {setshowSearchResults(false)};
+
+
+
+    async function searchUsers(query) {
+        let users = [];
+        if (query) {
+            users = await searchUsersInDb(db, query);
+        }
+        setsearchResults(users);
+    }
 
     if (!userData) {
         return;
@@ -28,8 +60,27 @@ export default function Navigation({
                     </div>
                 </div>
                 <div className={styles.navSectionShort}>
-                    <label htmlFor="search"><i className={["fa-solid", "fa-magnifying-glass", styles.icon].join(' ')}></i></label>
-                    <input name='search' id='search' className={styles.searchInput} type="text" placeholder='Search' />
+                    <form autoComplete='off'>
+
+                    <label htmlFor="searchBarNeww"><i className={["fa-solid", "fa-magnifying-glass", styles.icon].join(' ')}></i></label>
+                    <input 
+                    name='searchBarNeww' 
+                    id='searchBarNew' 
+                    className={styles.searchInput} 
+                    type="text" 
+                    placeholder='Search'
+                    autoComplete='false'
+                    autoCorrect='false'
+                    role='presentation'
+                    value={searchBarValue}
+                    onChange={onSearchChangeHandler}
+                    onFocus={showSearch} />
+                    <SearchResults
+                    showSearchResults={showSearchResults}
+                    users={searchResults}
+                    ></SearchResults>
+                    </form>
+
                 </div>
                 <div className={[styles.navSectionLong, styles.right].join(' ')}>
                     <div className={styles.navMenu}>

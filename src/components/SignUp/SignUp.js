@@ -3,8 +3,6 @@ import InputField from '../SignIn/InputField/InputField';
 import { emailValidator, fullNameValidator, passwordValidator, usernameValidator } from '../../validators/signUpFormValidators';
 import { CurrentUserContext, FirebaseContext } from '../../App';
 import { addNewUserToDatabase } from '../../services/firestoreService';
-
-import debounce from 'lodash.debounce'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useState, useContext, useEffect } from 'react';

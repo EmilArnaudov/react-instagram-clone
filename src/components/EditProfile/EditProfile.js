@@ -24,9 +24,18 @@ export default function EditProfile() {
     useEffect(() => {
         if (userData) {
             setFullName(userData.fullName)
-            setDescription(userData.description.join('\n'))
-            setPhoneNumber(userData.phoneNumber);
-            setGender(userData.gender);
+            if (userData.description.length > 0) {
+                setDescription(userData.description.join('\n'))
+            }
+
+            if (userData.phoneNumber) {
+                setPhoneNumber(userData.phoneNumber);
+            }
+
+            if (userData.gender) {
+                setGender(userData.gender);
+            }
+
         }
 
     }, [])

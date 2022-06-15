@@ -2,7 +2,6 @@ import styles from './NewsFeed.module.css';
 
 import { CurrentUserContext, FirebaseContext } from '../../App';
 import Post from '../Post/Post';
-import SuggestedUser from './SuggestedUser/SuggestedUser';
 import Footer from '../Footer/Footer';
 import Navigation from '../Navigation/Navigation';
 
@@ -12,6 +11,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { loadNewsFeedPosts } from '../../services/postService';
 import Loader from './Loader/Loader';
+import Suggestions from './Suggestions/Suggestions';
 
 export default function NewsFeed() {
     const navigate = useNavigate();
@@ -102,13 +102,7 @@ export default function NewsFeed() {
                         <p className={styles.suggestionsForYou}>Suggestions For You</p>
                     </div>
 
-                    <div className={styles.suggestedUsersContainer}>
-                        <SuggestedUser></SuggestedUser>
-                        <SuggestedUser></SuggestedUser>
-                        <SuggestedUser></SuggestedUser>
-                        <SuggestedUser></SuggestedUser>
-                        <SuggestedUser></SuggestedUser>
-                    </div>
+                    <Suggestions></Suggestions>
 
                     <div className={styles.footerContainer}>
                         <Footer></Footer>
