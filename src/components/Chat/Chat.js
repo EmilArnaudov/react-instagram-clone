@@ -72,7 +72,7 @@ export default function Chat({
                         </div>
                         <div className={styles.contactsBody}>
                             {chats.map((chat) => <ChatContact 
-                            key={Math.random()} 
+                            key={Math.random()}
                             chat={(currentChat && chat.id === currentChat.id) ? currentChat : chat}
                             isActive = {(currentChat && chat.id === currentChat.id) ? true : false}
                             ></ChatContact>)}

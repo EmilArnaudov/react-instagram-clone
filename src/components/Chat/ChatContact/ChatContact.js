@@ -19,7 +19,7 @@ export default function ChatContact({
         }
     }, [userData])
 
-    if (!contactData) {
+    if (!contactData || !chat) {
         return;
     }
 
@@ -37,13 +37,13 @@ export default function ChatContact({
                     <span>{contactData.username}</span>
                     <div className={styles.details}>
                         <span className={styles.lastMessageContainer}>
-                            <span>{chat.messages[0].content}</span>
+                            <span>{chat.messages.length > 0 ? chat.messages[0].content : 'No texts yet'}</span>
                         </span>
                         <div className={styles.dotContainer}>
                             <span className={styles.dot}>.</span>
                         </div>
                         
-                        <span>{formatTimePassed(chat.messages[0].time)}</span>
+                        <span>{chat.messages.length > 0 ? formatTimePassed( chat.messages[0].time): 'Now'}</span>
                     </div>
                 </div>
             </div>

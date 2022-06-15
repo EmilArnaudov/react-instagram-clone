@@ -1,4 +1,4 @@
-import {doc, updateDoc, arrayUnion, collection, addDoc, arrayRemove, getDocs} from 'firebase/firestore'
+import {doc, updateDoc, arrayUnion, collection, addDoc, arrayRemove, getDocs, getDoc} from 'firebase/firestore'
 import { getUserDataWithUsername } from './firestoreService'
 
 export async function followUser(db, currentUser, followedUser) {
@@ -48,15 +48,22 @@ export async function updatePeopleNewsFeeds(db, postId, username) {
 export async function loadSuggestedUsers(db, userData) {
     let followers = userData.followers;
     let following = userData.following;
-    let suggestions = [];
+    let suggestionIds = [];
+    let suggestedUsers = [];
 
     followers.forEach((followed) => {
         if (!following.includes(followed)) {
-            suggestions.push(followed);
+            suggestionIds.push(followed);
         }
     })
 
-    return suggestions;
+    for (const id of suggestionIds) {
+        const docRef = doc(db, 'users', id);
+        const docSnap = await getDoc(docRef);
+        suggestedUsers.push(docSnap.data());
+    }
+
+    return suggestedUsers;
 
 }
 

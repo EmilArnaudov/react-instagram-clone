@@ -12,12 +12,14 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { loadNewsFeedPosts } from '../../services/postService';
 import Loader from './Loader/Loader';
 import Suggestions from './Suggestions/Suggestions';
+import { loadSuggestedUsers } from '../../services/userService';
 
 export default function NewsFeed() {
     const navigate = useNavigate();
     const { user, userData } = useContext(CurrentUserContext);
     const { auth, db } = useContext(FirebaseContext);
 
+    const [suggestedUsers, setsuggestedUsers] = useState([]);
     const [posts, setPosts] = useState([]);
     const [loadMore, setLoadMore] = useState(true);
 
@@ -33,6 +35,7 @@ export default function NewsFeed() {
     useEffect(() => {
         if(userData) {
             loadPostsData();
+            loadSuggestions();
         }
     }, [userData])
 
@@ -45,6 +48,13 @@ export default function NewsFeed() {
 
     if (!userData) {
         return;
+    }
+
+    function loadSuggestions() {
+        loadSuggestedUsers(db, userData)
+            .then(users => {
+                setsuggestedUsers(users);
+            })
     }
 
     function loadPostsData() {
@@ -102,7 +112,7 @@ export default function NewsFeed() {
                         <p className={styles.suggestionsForYou}>Suggestions For You</p>
                     </div>
 
-                    <Suggestions></Suggestions>
+                    <Suggestions users={suggestedUsers}></Suggestions>
 
                     <div className={styles.footerContainer}>
                         <Footer></Footer>

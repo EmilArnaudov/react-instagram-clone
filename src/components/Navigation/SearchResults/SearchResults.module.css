@@ -10,6 +10,7 @@
     border-radius: 4px;
     -webkit-box-shadow: 0px 0px 3px 0px #a3a3a3;
     box-shadow: 0px 0px 3px 0px #a3a3a3;
+    overflow-y: scroll;
 }
 
 .show {

@@ -21,7 +21,7 @@ export default function SearchResult({
             </div>
             <div className={styles.userDetails}>
                 <p className={styles.username}>{user.username}</p>
-                <p className={styles.description}>{user.description[0]}</p>
+                <p className={styles.description}>{user.description.legnth > 0 ? user.description[0] : user.fullName}</p>
             </div>
         </div>  
     )

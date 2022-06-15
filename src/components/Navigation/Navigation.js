@@ -34,7 +34,11 @@ export default function Navigation({
     const [searchResults, setsearchResults] = useState([]);
     const [showSearchResults, setshowSearchResults] = useState(false);
     const showSearch = (e) => {setshowSearchResults(true)};
-    const hideSearch = () => {setshowSearchResults(false)};
+    const hideSearch = () => {
+        setTimeout(() => {
+            setshowSearchResults(false)
+        }, 100)
+    };
 
 
 
@@ -74,7 +78,8 @@ export default function Navigation({
                     role='presentation'
                     value={searchBarValue}
                     onChange={onSearchChangeHandler}
-                    onFocus={showSearch} />
+                    onFocus={showSearch}
+                    onBlur={hideSearch} />
                     <SearchResults
                     showSearchResults={showSearchResults}
                     users={searchResults}
