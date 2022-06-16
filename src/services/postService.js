@@ -99,3 +99,12 @@ function getPostDate() {
 
     return `${month} ${day}`
 }
+
+export async function allPostsLoaded(db, user, currentPosts) {
+    const arr = [];
+    const collectionRef = collection(db, 'newsFeeds', user.email, 'posts')
+    const docSnap = await getDocs(collectionRef);
+    docSnap.forEach(x => arr.push(x.data()));
+
+    return currentPosts.length < arr.length; 
+}

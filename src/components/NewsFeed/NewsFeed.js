@@ -9,7 +9,7 @@ import { signOut } from 'firebase/auth';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { loadNewsFeedPosts } from '../../services/postService';
+import { allPostsLoaded, loadNewsFeedPosts } from '../../services/postService';
 import Loader from './Loader/Loader';
 import Suggestions from './Suggestions/Suggestions';
 import { loadSuggestedUsers } from '../../services/userService';
@@ -63,10 +63,11 @@ export default function NewsFeed() {
         }
 
         loadNewsFeedPosts(db, userData.email, posts.length)
-            .then(postsData => {
-                if (postsData.length < 5) {
+            .then(async (postsData) => {
+                const loadMore = await allPostsLoaded(db, userData, posts)
+                if (!loadMore) {
                     setLoadMore(false);
-                } 
+                }
 
                 setPosts(postsData);
             })
@@ -83,7 +84,7 @@ export default function NewsFeed() {
                         next={loadPostsData}
                         hasMore={loadMore}
                         loader={<Loader></Loader>}
-                        style={{overflow: 'none', height: '100%'}}
+                        style={{overflow: 'hidden', height: '100%'}}
                     >   
                     <div id='scrollableDiv' className={styles.infinitePosts}>
                         {posts.map(post => <Post postData={post} key={Date.now() + Math.random()} ></Post>)}
