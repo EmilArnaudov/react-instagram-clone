@@ -91,3 +91,10 @@
 .dragPhotoText {
     font-size: 20px;
 }
+
+.error {
+    color: red;
+    width: 100%;
+    font-size: 14px;
+    text-align: center;
+}

@@ -4,6 +4,9 @@ import { getUserDataWithUsername } from './firestoreService'
 export async function followUser(db, currentUser, followedUser) {
     const docRefcurrentUser = doc(db, "users", currentUser.email);
     const docReffollowedUser = doc(db, "users", followedUser.email);
+
+    updateUserNewsFeed(db, currentUser, followedUser);
+
     await Promise.all([updateDoc(docRefcurrentUser, {following: arrayUnion(followedUser.email)}),
                         updateDoc(docReffollowedUser, {followers: arrayUnion(currentUser.email)})])
 
@@ -79,3 +82,15 @@ export async function searchUsersInDb(db, query) {
         || user.email.toLowerCase().includes(query.toLowerCase())
         || user.fullName.toLowerCase().includes(query.toLowerCase()));
 }
+
+async function updateUserNewsFeed(db, user, otherUser) {
+    const docRef = doc(db, 'users', otherUser.email);
+    const docSnap = await getDoc(docRef);
+    const data = docSnap.data();
+    let posts = data.ownPosts;
+
+    const newsFeedCollection = collection(db, 'newsFeeds', user.email, 'posts');
+    for (const postId of posts) {
+        addDoc(newsFeedCollection, {postId, time: Date.now()});
+    }
+}   

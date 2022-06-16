@@ -37,12 +37,12 @@
 
 .postImageContainer {
     width: 60%;
-    height: calc(100vh - 98px);
+    height: calc(100vh - 88px);
 }
 
 .postImageContainer > img {
     width: 100%;
-    height: calc(100vh - 98px);
+    height: calc(100vh - 87px);
     object-fit: cover;
     object-position: center;
 }

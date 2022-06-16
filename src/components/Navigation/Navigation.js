@@ -98,9 +98,6 @@ export default function Navigation({
                         <div className={styles.navMenuIconDiv}>
                             <span to='/' onClick={handleShow} className={styles.link}><i className="fa-solid fa-circle-plus"></i></span>
                         </div>
-                        <div className={styles.navMenuIconDiv}>
-                            <Link className={styles.link} to='/'><i className="fa-solid fa-heart"></i></Link>
-                        </div>
                         <div className={styles.userProfilePic}>
                             <Link className={styles.link} 
                             to={'/' + userData.username}>

@@ -37,6 +37,13 @@ export default function CreatePostModal({
         }
     }
 
+    const fileSelect = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            handleFile(file);
+        }
+    }
+
     const handleFile = async (file) => {
         const isFileValid = validateFile(file);
         if (isFileValid) {
@@ -66,6 +73,7 @@ export default function CreatePostModal({
                     fileDrop={fileDrop}
                     uploadUrl={uploadUrl}
                     Modal={Modal}
+                    fileSelect={fileSelect}
                     errorMessage={errorMessage}
                 ></ModalBodyNoImage>
                 : <ModalBodyImage

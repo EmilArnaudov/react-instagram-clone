@@ -6,7 +6,8 @@ export default function ModalBodyNoImage({
     dragLeave,
     fileDrop,
     Modal,
-    errorMessage
+    errorMessage,
+    fileSelect
 }) {
     return (
         <>
@@ -32,7 +33,7 @@ export default function ModalBodyNoImage({
                             <label className={styles.selectButton} htmlFor="file">
                                 Select from computer
                             </label>
-                            <input className={styles.hidden} type="file" name='file' id='file'/>
+                            <input onChange={fileSelect} className={styles.hidden} type="file" name='file' id='file'/>
                         </div>
                 </div>
             </div>

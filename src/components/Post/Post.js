@@ -65,6 +65,7 @@ export default function Post({
             commentOwner: userData.username,
             commentOwnerProfilePic: userData.profilePic,
             commentContent: comment,
+            time: Date.now(),
         }
 
         addCommentToPost(db, commentModel, post.id);

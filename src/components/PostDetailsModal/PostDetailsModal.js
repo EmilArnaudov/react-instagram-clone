@@ -51,6 +51,7 @@ export default function PostDetailsModal({
             commentOwner: userData.username,
             commentOwnerProfilePic: userData.profilePic,
             commentContent: comment,
+            time: Date.now(),
         }
 
         addCommentToPost(db, commentModel, post.id);
@@ -106,6 +107,7 @@ export default function PostDetailsModal({
 
                                     <div className={styles.comments}>
                                         <ul className={styles.commentsList}>
+                                            <PostDetailComment modal={true} key={Math.random()} comment={{commentOwnerProfilePic: userData.profilePic, commentOwner: userData.username, commentContent: post.caption, time: post.time}}></PostDetailComment>
                                             {post.comments.map(comment => <PostDetailComment modal={true} key={Math.random()} comment={comment}></PostDetailComment>)}
                                         </ul>
                                     </div>

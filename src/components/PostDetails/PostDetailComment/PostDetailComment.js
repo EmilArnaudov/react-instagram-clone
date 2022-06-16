@@ -1,3 +1,4 @@
+import { formatTimePassed } from '../../../services/chatService';
 import styles from './PostDetailComment.module.css';
 
 export default function PostDetailComment({
@@ -22,7 +23,7 @@ export default function PostDetailComment({
                         <span className={styles.commentText}>{comment.commentContent}</span>
                     </div>
                     <div className={styles.commentLeftAgo}>
-                        <span>6w</span>
+                        <span>{formatTimePassed(comment.time)}</span>
                     </div>
                 </div>
             </div>

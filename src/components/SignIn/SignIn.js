@@ -18,10 +18,10 @@ export default function SignIn() {
         }
     })
 
-    let [email, setEmail] = useState('');
-    let [password, setPassword] = useState('');
-    let [isEmailValid, setIsEmailValid] = useState(false);
-    let [isPasswordValid, setIsPasswordValid] = useState(false);
+    let [email, setEmail] = useState('guest@test.com');
+    let [password, setPassword] = useState('Parolaguest1');
+    let [isEmailValid, setIsEmailValid] = useState(true);
+    let [isPasswordValid, setIsPasswordValid] = useState(true);
 
     function onChangeHandler(e) {
         if (e.target.id === 'email') {
