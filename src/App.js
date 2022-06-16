@@ -56,7 +56,6 @@ function App() {
                 <Route path='/profile/edit' element={<EditProfile/>}></Route>
                 <Route path='/messages/:chatID' element={<Chat/>}></Route>
                 <Route path='/:username' element={<UserProfile/>}></Route>
-                <Route path='/p/:postId'element={<PostDetails/>} ></Route>
 
               </Routes>
           </Router>

@@ -107,7 +107,7 @@ export default function PostDetailsModal({
 
                                     <div className={styles.comments}>
                                         <ul className={styles.commentsList}>
-                                            <PostDetailComment modal={true} key={Math.random()} comment={{commentOwnerProfilePic: userData.profilePic, commentOwner: userData.username, commentContent: post.caption, time: post.time}}></PostDetailComment>
+                                            <PostDetailComment modal={true} key={Math.random()} comment={{commentOwnerProfilePic: post.ownerProfilePic, commentOwner: post.ownerUsername, commentContent: post.caption, time: post.time}}></PostDetailComment>
                                             {post.comments.map(comment => <PostDetailComment modal={true} key={Math.random()} comment={comment}></PostDetailComment>)}
                                         </ul>
                                     </div>

@@ -5,19 +5,26 @@ import { onSnapshot, doc } from 'firebase/firestore';
 import { useContext, useEffect, useState } from 'react';
 import { CurrentUserContext, FirebaseContext } from '../../App';
 import { loadAllChats } from '../../services/chatService';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import ChatMessages from './ChatMessages/ChatMessages';
 
 export default function Chat({
 
 }) {
     const { db } = useContext(FirebaseContext);
-    const { userData } = useContext(CurrentUserContext);
+    const { userData, user } = useContext(CurrentUserContext);
+    const navigate = useNavigate();
     const [chats, setChats] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
     const [chatSelected, setChatSelected] = useState(false)
     const { chatID } = useParams();
     const location = useLocation();
+
+    useEffect(() => {
+        if (!user) {
+            navigate('/sign-in')
+        }
+    }, []);
 
     useEffect(() => {
         if (userData) {

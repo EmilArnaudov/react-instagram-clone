@@ -18,11 +18,15 @@ import { useNavigate } from 'react-router-dom';
 
 export default function UserProfile() {
     const navigate = useNavigate();
-    const { userData } = useContext(CurrentUserContext);
+    const { userData, user } = useContext(CurrentUserContext);
     const { db, storage } = useContext(FirebaseContext)
 
     const visitedUserData = useLoadProfileData();
     const [content, setContent] = useState('posts')
+
+    if (!user) {
+        navigate('/sign-in')
+    }
 
     if (!visitedUserData || !userData) {
         return;

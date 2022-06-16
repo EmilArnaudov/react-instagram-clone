@@ -99,7 +99,7 @@ export default function Post({
             </div>
             <div className={styles.actions}>
                 <span className={postLiked ? styles.likedButton : styles.likeButton} onClick={likePost}><i className="fa-solid fa-heart"></i></span>
-                <span><i className="fa-solid fa-comment"></i></span>
+                <span onClick={handleShow}><i className="fa-solid fa-comment"></i></span>
             </div>
             <div className={styles.likedBy}>
                 {post.likes.length === 0 
@@ -132,8 +132,6 @@ export default function Post({
 
                 {(post.comments.length > 0 && post.comments.length < 4)
                 ?
-                    <>
-                    {post.comments.map(comment =>
                         <>
                         {post.comments.map(comment =>                 
                         <div className={styles.firstComment}>
@@ -142,9 +140,6 @@ export default function Post({
                         </div>
                         )}
                         </>         
-
-                    )}
-                    </>
                 :
                 <>
                 {post.comments.length > 0 &&                 
