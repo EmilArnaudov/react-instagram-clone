@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Instagram Clone Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ A functional instagram clone built with custom HTML, CSS and Javascript (React)
 
-## Available Scripts
+### This app has the following functionalities: 
 
-In the project directory, you can run:
+   - Sign in/ Sign up with email and password.
+   - Infinite scroll news feed that will load posts when the user reaches 90% of screen height.(As long as there is new content)
+   - Create new posts.
+   - Tag people in posts.
+   - Save posts you like.
+   - Like/unlike posts.
+   - Leave comments on posts.
+   - A list of suggested users that consists of users who follow you, but you don't follow them.
+   - Search for other users with the navigation search bar.
+   - Send text messages to other users with the direct messaging system (chat).
+   - Customize your account profile.
 
-### `npm start`
+## App Details
+     
+   - The app is built with HTML, CSS, React.
+   - Firebase Auth is used for user authentication.
+   - Firebase Storage for file storage.
+   - Firestore for database.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Live Demo
+#### There is a guest account already filled-in just click Log in
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+[Demo here](https://instagram-clone-c01f1.web.app/sign-in)
 
-### `npm test`
+## Screenshots
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![instaclone-login](https://user-images.githubusercontent.com/97251935/174290392-745ad43f-ec28-48ce-b7e6-d0b4c5dc1493.png)
+![instaclone-register](https://user-images.githubusercontent.com/97251935/174290398-d6a30228-c421-4aef-b298-35bc0b4dc6dc.png)
+![instaclone-newsfeed](https://user-images.githubusercontent.com/97251935/174290413-9d4d0dbc-ba6a-41d9-a3a2-65c3900a9f92.png)
+![instaclone-searchbar](https://user-images.githubusercontent.com/97251935/174290427-e96aabd0-3fd1-4da2-93bf-4660109af056.png)
+![instaclone-modal-post](https://user-images.githubusercontent.com/97251935/174290432-3ad70111-3c99-4433-aeb9-427e6e755894.png)
+![instaclone-modal-create](https://user-images.githubusercontent.com/97251935/174290507-fd32d7a3-2460-4cbd-80aa-20dce9568c31.png)
+![instaclone-modal-create-2](https://user-images.githubusercontent.com/97251935/174290520-e703ca2c-ea48-45ae-a8d5-323823563764.png)
+![instaclone-chat](https://user-images.githubusercontent.com/97251935/174290531-fdc930b5-8d82-494f-8fe5-4c59f97247ae.png)
+![instaclone-profile](https://user-images.githubusercontent.com/97251935/174290536-5f6016e6-7efb-4bb1-9fc4-330b69a4a0d0.png)
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
